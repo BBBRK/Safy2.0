@@ -549,6 +549,7 @@
         <script src="<?php echo base_url('assets/script/user-photo-autosubmit.js');?>"></script>
         <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
         <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/script/click-histo.js'); ?>"></script>
 
 
 
@@ -592,7 +593,7 @@
                     var result = "";
                     for(var historique of data){
 
-                        result += '<tr id="click-' + historique.id + '"><td class="height-row click">' + historique.type + '</td>';
+                        result += '<tr id="click-' + historique.id + '" class="click"><td class="height-row">' + historique.type + '</td>';
                         result += "<td class='height-row'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
                         result += "<td class='height-row'>" + historique.date + "</td>";
