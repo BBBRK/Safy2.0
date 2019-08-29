@@ -57,9 +57,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 if ($this->input->post()) {
 
+
                 //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-                    //Reccupere l'extention du fichier
+                    //Reccupere l'extension du fichier
                     $name = $_FILES["myfile"]['name'];
                     $file_ext = pathinfo($name, PATHINFO_EXTENSION);
 

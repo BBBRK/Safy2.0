@@ -344,7 +344,9 @@
                                 <th class="head-historique"scope="col">Km</th>
                                 <th class="head-historique"scope="col">Date</th>
                                 <th class="head-historique"scope="col">Prix</th>
-                                <th class="head-historique"scope="col">Supprimer</th>
+                                <th class="head-historique"scope="col"> </th>
+                                <th class="head-historique"scope="col"> </th>
+                                <th class="head-historique"scope="col"> </th>
                             </tr>
                         </thead>
                         <tbody id="tr">
@@ -562,8 +564,6 @@
 
     <script>
 
-
-
         var divSante = document.querySelector(".moto-sante");
         var divHistorique = document.querySelector(".historique");
         var idMoto = $("#idMoto").val();
@@ -572,7 +572,7 @@
 
         function sante(){
 
-            divHistorique.style.display ="none";
+            divHistorique.style.display = "none";
             divSante.style.display = "block";
         }
 
@@ -588,15 +588,17 @@
                     var result = "";
                     for(var historique of data){
 
-                        result += "<div class='testest'>";
-                        result += "<tr><td class='height-row'>" + historique.type + "</td>";
+                        result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
                         result += "<td class='height-row'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
                         result += "<td class='height-row'>" + historique.date + "</td>";
                         result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
-                        result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button>   |   <a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a>   |   <a href='http://localhost/safymotor/index.php/facture/ajout/'><i class='fas fa-cloud-upload-alt'></i></a></td><tr>";
+                        result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
+                        result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
+                        result += "<td class='height-row'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' name='facture'><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='submit' class='butn btn btn-lg' value='Valider'></form></td></tr>"
 // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
-                        result += "</div>";
+
+
                     }
                     $("#tr").html(result);
 
@@ -609,10 +611,10 @@
             divHistorique.style.display = "block";
         }
 
-        </script>
+    </script>
 
 
-        <script>
+    <script>
             $(document).ready(function(){
 
                 document.getElementById("suivi").addEventListener("click", function(){
@@ -657,8 +659,6 @@
 
 
             });
-        </script>
-
-    </body>
+    </script>
 
 </html>
