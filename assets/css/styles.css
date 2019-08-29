@@ -1,0 +1,572 @@
+
+
+            /* FONTS */
+/*
+font-family: 'Oxygen', sans-serif;
+font-family: 'Play', sans-serif;
+*/
+
+
+
+body{
+    background-color: #323232;
+    padding: 2% 15% 0 15%;
+    text-align: center;
+}
+
+section{
+    margin-bottom: 100px;
+}
+
+p{
+    font-family: 'Play', sans-serif;
+    font-size: 1.5rem;
+}
+
+small{
+    font-size: 1.1rem;
+    color: #b8b2a6;
+}
+
+
+
+
+/* ******** INDEX.PHP ******** */
+
+/* ------------------------------------------- */
+
+/* ______ horizontal lines _____*/
+
+.horizontal-line{
+
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), red, rgba(0, 0, 0, 0));
+}
+
+.hr-votre-moto{
+    margin-bottom: 0;
+}
+
+
+/* ------------------------------------------- */
+
+/* ______ NAVBAR _____*/
+
+
+.logo{
+    height: 50px;
+    width: 50px;
+}
+
+
+.nav{
+    margin-bottom: 40px;
+}
+
+.nav-link{
+    font-family: 'Play', sans-serif;
+    font-size: 1.2rem;
+}
+
+
+.head-historique{
+    background-color: #3b3939;
+}
+
+.nav_detail{
+    margin: 0 30px 0 30px;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.nav_detail:hover{
+    cursor: pointer
+}
+
+.nav_item{
+    display:inline-block;
+    min-width:50px;
+}
+
+.nav_item a {
+    text-decoration:none;
+    line-height: 30px;
+    text-align: center;
+}
+
+.nav_item a:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0;
+    background: transparent;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+.nav_item a:hover:after {
+
+    width: 100%;
+    background: red;
+}
+
+
+
+
+
+/* ------------------------------------------- */
+
+/* ______ PHOTOS _____*/
+
+
+.big-photo{
+    width: 100%;
+    height: 100%;
+}
+
+.little-photo{
+    width: 100%;
+    /* object-fit: contain; */
+}
+
+.little-photo-top{
+    padding-bottom: 20px;
+}
+
+/* ------------------------------------------- */
+
+/* ______ Maitrisez votre moto _____*/
+
+
+.align{
+    display: inline-block;
+}
+
+.a-quoi-ca-sert{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.bottom{
+    padding-top: 20px;
+}
+
+.center{
+    position: relative;
+}
+
+.customers{
+    padding: 55px 0 55px 0;
+}
+
+.for-what{
+    margin-bottom: 50px;
+}
+
+.master{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 50px;
+}
+
+.vosmotos{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+    color: white;
+}
+
+.parragraphe{
+    padding-top: 10px;
+    margin-bottom: 100px;
+}
+
+.section2{
+    color: white;
+}
+
+
+.what{
+    font-family: 'Play', sans-serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #cf3030;
+    margin-right: 30px;
+
+}
+
+/* ------------------------------------------- */
+
+/* ______ Section 3 _____*/
+
+.section3{
+    color: white;
+}
+
+
+/* ------------------------------------------- */
+
+/* ******** sub_form.php ******** */
+
+.alerte-messages{
+    font-family: 'Play', sans-serif;
+    color: #fe5f55;
+    border-radius: 30px;
+    text-align: left;
+    margin-bottom: 100px;
+}
+
+.alerte-messages-sub{
+    font-family: 'Play', sans-serif;
+    color: #fe5f55;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 3px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #fe5f55;
+    font-size: 1rem;
+}
+
+.alerte-messages-connexion{
+    font-family: 'Play', sans-serif;
+    color: #fe5f55;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 100px;
+    padding: 3px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #fe5f55;
+    font-size: 1rem;
+}
+
+.ok-messages{
+    font-family: 'Play', sans-serif;
+    color: #b8e9c0;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 100px;
+    padding: 8px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #b8e9c0;
+}
+
+
+.formulaire{
+    text-align: left;
+}
+
+.lab-input{
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.sub-form, .connexion-form{
+    margin-top: 100px;
+    font-family: 'Play', sans-serif;
+    color: white;
+    padding: 0 30% 0 30%;
+    text-align: left;
+}
+
+.sub{
+    border-radius: 30px;
+    margin: 0 0 25px 0;
+}
+
+.submit{
+    width: 100px;
+    margin-top: 30px;
+    background-color: red;
+    border: none;
+}
+
+.submit:hover{
+    background-color: #cf3030;
+}
+
+/* ------------------------------------------- */
+
+/* ******** userindex.php ******** */
+
+
+
+.section-userindex{
+    text-align: center;
+}
+
+.cards-photo{
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    position: relative;
+}
+
+.card-body{
+    color: white;
+    padding-bottom: 5px;
+}
+
+.test{
+    padding: 10px;
+}
+
+.card{
+    padding: 20px;
+    border-color: #cf3030;
+    background-color: #393e46;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card-title{
+    font-family: 'Play', sans-serif;
+    font-size: 2.5rem;
+}
+
+.small{
+    font-family: 'Play', sans-serif;
+    font-size: 0.8rem;
+}
+
+.hr-userindex{
+    margin-top: 35px;
+    margin-bottom: 0;
+}
+
+.fa-plus-square{
+    color: #cf3030;
+    margin-bottom: 100px;
+}
+
+.fa-plus-square:hover{
+    color: #fe5f55;
+}
+
+.href-date{
+    text-decoration: none !important;
+}
+
+/* ------------------------------------------- */
+
+/* ******** detail_moto.php ******** */
+
+/* upload photo button */
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn-upload {
+  border: 2px solid #cf3030;
+  color: red;
+  background-color: white;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/* end  button */
+
+.changerPhoto{
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.photo-detail{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.photo-detail:hover{
+    cursor: pointer;
+}
+
+.detail-titre{
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    color: white;
+    text-align: left;
+}
+
+.detail{
+    font-family: 'Play', sans-serif;
+    color: white;
+    font-size: 1rem !important;
+    text-align: left;
+}
+
+.kilometre{
+    color: white;
+    margin-bottom: 75px;
+    margin-top: 30px;
+}
+
+.hr-detail{
+    margin-bottom: 70px;
+}
+
+
+/* ** Progress bar ** */
+
+.progress{
+    margin: 5px 0 26px 0;
+    height: 14px;
+    background-color: #323232;
+    -webkit-box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+    -moz-box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+    box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+}
+/* a1a3a6 */
+.progress-bar{
+    background-color: #dc5353;
+}
+
+
+/* ** pop over ** */
+
+
+.myPop{
+    background-color: #323232;
+    border: none;
+    padding: 0 12px 0 12px;
+}
+
+.col-progressbar{
+    height: 24px !important;
+    margin-bottom: 16px;
+}
+
+.progress-icone{
+    height: 24px !important;
+    padding-right: 120px;
+
+}
+
+/* BLINK */
+.blink
+{
+    color: white;
+    /* border: solid;
+    border-width: thin;
+    border-color: white; */
+    animation: crescendo 0.5s alternate infinite ease-in;
+    transform: scale(1);
+    -webkit-box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+    -moz-box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+    box-shadow: 0px 0px 2.5px 1px rgba(161,163,166,1);
+}
+
+@keyframes crescendo
+{
+    0%   {transform: scale(0.8);}
+    100% {transform: scale(1.2);}
+}
+
+
+
+/* ------------------------------------------- */
+
+/* ******** modal_detail ******** */
+
+
+
+
+
+.modal-form{
+    margin-top: 50px;
+    font-family: 'Play', sans-serif;
+    color: white;
+    padding: 0 30% 0 30%;
+}
+
+.form-group1{
+    text-align: left;
+}
+
+.modal{
+    text-align: center;
+    color: white;
+}
+
+.submit{
+    text-align: center;
+}
+
+.modal-content{
+    background: #393e46;
+}
+
+.sub-text{
+    border-radius: 20px;
+    margin: 0 0 25px 0;
+}
+
+
+
+/* ------------------------------------------- */
+
+/* ******** historique table ******** */
+
+
+.height-row{
+    height: 50px;
+    border-color: #cf3030 !important;
+}
+
+.head-historique{
+    border-color: #cf3030 !important;
+}
+
+.larg-historique{
+    width: 50%;
+    max-width: 50%;
+}
+
+.moto-sante{
+    display: none;
+}
+
+.historique{
+    margin-top: 100px;
+    display: none;
+    color: white;
+}
+
+
+@media only screen and (max-width: 1396px)
+{
+    html
+    {
+        font-size:80%;
+        text-align: center;
+    }
+
+}

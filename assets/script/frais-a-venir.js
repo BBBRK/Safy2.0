@@ -1,0 +1,2 @@
+
+$(".myPop").popover();
