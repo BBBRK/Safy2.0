@@ -535,6 +535,7 @@
     </div>
 
 
+
     </script>
 
         <!-- Bootstrap scripts -->
@@ -580,6 +581,9 @@
 
             divSante.style.display = "none";
 
+             var id = <?php echo $moto[0]->id_Moto; ?>;
+
+
             $.ajax({
                 url: "<?= site_url("moto/historique") ?>/" + idMoto,
                 //dataType: "json",
@@ -588,14 +592,14 @@
                     var result = "";
                     for(var historique of data){
 
-                        result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
+                        result += '<tr id="click-' + historique.id + '"><td class="height-row click">' + historique.type + '</td>';
                         result += "<td class='height-row'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
                         result += "<td class='height-row'>" + historique.date + "</td>";
                         result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
                         result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
                         result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
-                        result += "<td class='height-row'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' name='facture'><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='submit' class='butn btn btn-lg' value='Valider'></form></td></tr>"
+                        result += "<td class='height-row'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' name='facture'><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input type='submit' class='butn btn btn-lg' value='Valider'></form></td></tr>"
 // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
 
 
