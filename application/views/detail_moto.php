@@ -362,7 +362,9 @@
 
                     <!-- FACTURE -->
 
-        <div id="modal-facture-" class="modal fade" tabindex="-1" role="dialog">
+        <?php foreach ($historique as $histo){ ?>
+
+        <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
           <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -372,6 +374,8 @@
                 </button>
               </div>
               <div class="modal-body">
+
+        <?php } ?>
 
 
               </div>
@@ -549,7 +553,6 @@
         <script src="<?php echo base_url('assets/script/user-photo-autosubmit.js');?>"></script>
         <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
         <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/script/click-histo.js'); ?>"></script>
 
 
 
@@ -593,8 +596,8 @@
                     var result = "";
                     for(var historique of data){
 
-                        result += '<tr id="click-' + historique.id + '" class="click"><td class="height-row">' + historique.type + '</td>';
-                        result += "<td class='height-row'>" + historique.description + "</td>";
+                        result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
+                        result += "<td class='height-row click'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
                         result += "<td class='height-row'>" + historique.date + "</td>";
                         result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
@@ -607,13 +610,28 @@
                     }
                     $("#tr").html(result);
 
+                    $(".click").click(function(){
+
+                        var idFacture = this.parentNode.id.slice(6);
+                        $("#modal-facture-" + idFacture).modal("show");
+                    });
+
                 },
                 error: function(){
                     alert("ERREUR.");
                 }
             });
 
+
             divHistorique.style.display = "block";
+
+
+            // $(document).ajaxComplete(function(){
+            //
+            //
+            // })
+
+
         }
 
     </script>
@@ -625,9 +643,6 @@
                 document.getElementById("suivi").addEventListener("click", function(){
 
                     var data = [<?= $pneuAv; ?>, <?= $pneuArr; ?>, <?= $kitChaine; ?>, <?= $vid; ?>, <?= $plaqAv; ?>, <?= $plaqArr; ?>, <?= $purge; ?>];
-                    console.log("ok");
-
-
 
 
                     for (var i = 0; i < data.length; i++){
