@@ -375,13 +375,13 @@
               </div>
               <div class="modal-body">
 
-        <?php } ?>
-
-
+                  
               </div>
             </div>
           </div>
         </div>
+
+<?php } ?>
 
                     <!-- AJOUT ENTRETIEN -->
 
@@ -590,7 +590,7 @@
 
             $.ajax({
                 url: "<?= site_url("moto/historique") ?>/" + idMoto,
-                //dataType: "json",
+                dataType: "json",
                 success: function(data){
 
                     var result = "";
@@ -611,6 +611,8 @@
                     $("#tr").html(result);
 
                     $(".click").click(function(){
+
+                        // console.log(this.parentNode.id);
 
                         var idFacture = this.parentNode.id.slice(6);
                         $("#modal-facture-" + idFacture).modal("show");
@@ -638,6 +640,8 @@
 
 
     <script>
+
+    // TEST DE SCRIPT D'ANIMATION DES PROGRESS BARS
             $(document).ready(function(){
 
                 document.getElementById("suivi").addEventListener("click", function(){

@@ -173,7 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $historique = $this->input->post();
 
 
-            //TEMPORAIRE LE TEMPS DE LAJOUT DE LA FONCTION
+            //TEMPORAIRE LE TEMPS DE L'AJOUT DE LA FONCTION
             unset($historique['myfile']);
             $this->moto_model->ajout_operation($historique);
 
