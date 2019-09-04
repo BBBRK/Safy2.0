@@ -365,7 +365,7 @@
         <?php foreach ($historique as $histo){ ?>
 
         <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">Gestion des factures</h5>
@@ -375,7 +375,7 @@
               </div>
               <div class="modal-body">
 
-                  
+                  <img src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
               </div>
             </div>
           </div>

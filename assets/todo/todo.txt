@@ -1,0 +1,32 @@
+
+\********************** TO DO **********************/
+
+
+features à build:
+-----------------
+
+  - Gestions des emails (mail de verification à l'inscription + mails de rappel de mise à jour des kilometres)
+  - Passation de profil moto du vendeur à l'acheteur
+  - Connexion à une API pour reccuperer les informations machine dans la view detail_moto
+  - Inclure dans l'index l'inscription et connexion (modal ?, déroulant ?) et virer les view de merde
+  - Reflechir aux révisions constructeurs
+  - Gerer les mdp oublié
+
+
+
+  choses à faire:
+  ---------------
+
+    - Refonte des modals
+    - Refonte du design dans l'onglet historique
+    - background color gradient (clair-foncé-clair)
+    - animation des progressbar au click
+
+
+
+  bugs à traiter:
+  ---------------
+
+    - Centrer les cards dans userindex
+    - Modifier une operation fonctionne plus ???
+    - la photo ne change plus dans le userindex
