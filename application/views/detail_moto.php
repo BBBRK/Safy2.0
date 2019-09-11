@@ -416,7 +416,7 @@
                             <?php } ?>
 
                             <label class="lab-input">Date</label>
-                            <input type="date" class="form-control sub" name="date">
+                            <input type="date" class="form-control sub" name="date_operation">
 
                             <label class="lab-input">Km</label>
                             <input type="text" class="form-control sub" name="km">
@@ -456,7 +456,7 @@
               </div>
               <div class="modal-body">
                 <?php echo validation_errors();
-                      echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
+                      echo form_open('moto/modif_historique/'.$histo->id, 'id="form_operation"'); ?>
                       <div class="modal-form">
 
                             <div class="form-group form-group1">
@@ -476,7 +476,7 @@
                                 </select>
 
                                 <label class="lab-input">Date</label>
-                                <input type="date" class="form-control sub" name="date" value="<?= $histo->date; ?>">
+                                <input type="date" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
 
                                 <label class="lab-input">Km</label>
                                 <input type="text" class="form-control sub" name="km" value="<?= $histo->km; ?>">
@@ -599,7 +599,7 @@
                         result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
                         result += "<td class='height-row click'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
-                        result += "<td class='height-row'>" + historique.date + "</td>";
+                        result += "<td class='height-row'>" + historique.date_operation + "</td>";
                         result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
                         result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
                         result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";

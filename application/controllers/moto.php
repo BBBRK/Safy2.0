@@ -249,12 +249,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function modif_historique($id_operation){
 
-            $this->load->model('moto_model');
-            $id = $this->moto_model->modif_historique($id_operation);
 
-            $this->output->set_content_type('application/json');
-            $this->output->set_status_header(200);
-            $this->output->set_output(json_encode($id));
+            if ($data = $this->input->post()) {
+
+            $this->load->model('moto_model');
+            $id = $this->moto_model->modif_historique($id_operation, $data);
+
+            var_dump($data);
+            exit;
+
+            redirect('moto/detail_moto/'.$id_Moto);
+
+
+            }
 
         }
 
