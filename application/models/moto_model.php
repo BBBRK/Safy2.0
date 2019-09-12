@@ -146,6 +146,10 @@
         $prix = $data['prix'];
         $km = $data['km'];
 
+        unset($data['id_Moto']);
+
+
+
         $requete = $this->db->query("UPDATE Historique
                                      SET description = '$description',
                                          date_operation = '$date_operation',

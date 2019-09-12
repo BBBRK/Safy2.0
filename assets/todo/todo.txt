@@ -13,14 +13,14 @@ features à build:
   - Gerer les mdp oublié
 
 
-
   choses à faire:
   ---------------
 
     - Refonte des modals
     - Refonte du design dans l'onglet historique
-    - background color gradient (clair-foncé-clair)
+    - background color gradient (clair-foncé-clair) OK, CHECK DES AVIS
     - animation des progressbar au click
+    - Cacher le bouton d'upload des factures + le submit
 
 
 
@@ -28,5 +28,3 @@ features à build:
   ---------------
 
     - Centrer les cards dans userindex
-    - Modifier une operation fonctionne plus ???
-    - la photo ne change plus dans le userindex

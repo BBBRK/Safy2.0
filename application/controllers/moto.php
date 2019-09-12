@@ -253,12 +253,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             if ($data = $this->input->post()) {
 
             $this->load->model('moto_model');
-            $id = $this->moto_model->modif_historique($id_operation, $data);
+            $this->moto_model->modif_historique($id_operation, $data);
 
-            var_dump($data);
-            exit;
-
-            redirect('moto/detail_moto/'.$id_Moto);
+            redirect('moto/detail_moto/'.$data['id_Moto']);
 
 
             }

@@ -443,8 +443,6 @@
 
     <?php foreach ($historique as $histo){ ?>
 
-
-
         <div id="modal-update-entretien-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
           <div class="modal-dialog " role="document">
             <div class="modal-content">
@@ -487,6 +485,7 @@
                                 <label class="lab-input">Prix total</label>
                                 <input type="text" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
+                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
                             </div>
 
                             <button type="submit" class="btn btn-primary submit">Submit</button>
