@@ -18,9 +18,8 @@ features à build:
 
     - Refonte des modals
     - Refonte du design dans l'onglet historique
-    - background color gradient (clair-foncé-clair) OK, CHECK DES AVIS
     - animation des progressbar au click
-    - Cacher le bouton d'upload des factures + le submit
+    - Cacher le bouton d'upload des factures + le submit <= fait, declenchement submit marche pas
 
 
 
@@ -28,3 +27,4 @@ features à build:
   ---------------
 
     - Centrer les cards dans userindex
+    - Delete historique ne fonctionne plus ???
