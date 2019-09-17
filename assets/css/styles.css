@@ -375,6 +375,14 @@ small{
     display: inline-block;
 }
 
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 .btn-upload {
   border: 2px solid #cf3030;
   color: red;
@@ -385,13 +393,6 @@ small{
   font-weight: bold;
 }
 
-.upload-btn-wrapper input[type=file] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
 
 /* end  button */
 
@@ -536,6 +537,28 @@ small{
 /* ------------------------------------------- */
 
 /* ******** historique table ******** */
+
+
+.upload-facture{
+    position: absolute;
+    left: 81vw;
+    z-index: 5;
+    opacity: 0;
+}
+
+/* .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+} */
 
 
 .height-row{
