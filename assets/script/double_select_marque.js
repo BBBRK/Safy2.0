@@ -2,6 +2,8 @@
 $(document).ready(function(){
 
     $('#marque').on('change', function(){
+
+        console.log("coucou");
         var marqueId = $(this).val();
         if(marqueId == ''){
             $('#modele').prop('disabled', true);
@@ -9,7 +11,7 @@ $(document).ready(function(){
         else{
             $('#modele').prop('disabled', false);
             $.post({
-                url: "http://localhost/safymotor/index.php/moto/get_modele_json/" + marqueId,
+                url: "http://localhost/Safy2.0/index.php/moto/get_modele_json/" + marqueId,
                 //type: "POST",
                 //data: {marqueId: marqueId},
                 //dataType: 'json',

@@ -471,6 +471,7 @@
                                         <?php
                                     }
                                     ?>
+
                                 </select>
 
                                 <label class="lab-input">Date</label>
@@ -496,31 +497,34 @@
                 </div>
               </div>
             </div>
+
         <?php } ?>
 
 
                     <!-- MISE A JOUR KM -->
 
-    <div id="modal-km" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Mise à jour kilomètrique</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <?php echo validation_errors(); ?>
-              <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
-              <div id="error_msg">
+                <div class="modal fade" id="modal-km" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog cascading-modal modal-avatar modal-dialog-centered modal-sm" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                      <!--Header-->
+                      <div class="modal-header">
+                        <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="rounded-circle img-responsive" id="detailImg" alt="mes motos">
+                      </div>
+                      <!--Body-->
+                      <div class="modal-body text-center mb-1">
 
-              </div>
-                  <div class="modal-form">
+                        <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
+                        <hr class="horizontal-line hr-modal-km">
+
+
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
+                          <div id="error_msg"></div>
 
                         <div class="form-group form-group1">
-                            <label class="lab-input">Kilomètrage</label>
-                            <input type="text" class="form-control sub" id="km" name="km_Moto">
+                            <input type="text" class="form-control input-km" id="km" name="km_Moto" placeholder="4500">
 
                             <?php foreach ($moto as $raw) { ?>
                             <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
@@ -529,13 +533,15 @@
 
                         <button type="submit" class="btn btn-primary submit">Submit</button>
                       </form>
+                      </div>
 
+                    </div>
+                    <!--/.Content-->
                   </div>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
+                </div>
+
+
+
 
 
 
@@ -553,15 +559,7 @@
         <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
         <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
 
-
-
-
         <!-- <script src="<?php // echo base_url('assets/script/ajax_km_error.js');?>"></script> -->
-
-
-
-
-
 
     </body>
 
