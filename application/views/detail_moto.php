@@ -386,21 +386,38 @@
                     <!-- AJOUT ENTRETIEN -->
 
     <div id="modal-entretien" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Ajout d'une opération</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <div class="img-around-entretien">
+
+                  <?php foreach ($moto as $raw) {
+                      $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                      if($picture == true){ ?>
+
+                      <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+
+                  <?php }else{
+
+                          $substrName = substr($raw->nom_Modele, 0, 3);
+
+                      ?>
+                          <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                      <?php }} ?>
+              </div>
           </div>
           <div class="modal-body">
+
+            <h4 class="mt-1 mb-2">Ajouter un entretien</h4>
+            <hr class="horizontal-line hr-modal-km">
             <?php echo validation_errors(); ?>
               <?php echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
                   <div class="modal-form">
 
                         <div class="form-group form-group1">
-                            <label class="lab-input">Type</label>
                             <select class="form-control sub" name="id_operation">
                                 <?php foreach ($operation as $row) {
                                     echo '<option value='.$row->id.'>'.$row->type.'</option>';
@@ -409,23 +426,18 @@
 
                             </select>
 
-
                             <!-- Champs caché pour reccuperer l'id dans la fonction "ajout_operation" dans le controller -->
                             <?php foreach ($moto as $raw) { ?>
                             <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
                             <?php } ?>
 
-                            <label class="lab-input">Date</label>
-                            <input type="date" class="form-control sub" name="date_operation">
+                            <input type="date" class="form-control sub" name="date_operation" placeholder="30/11/1992">
 
-                            <label class="lab-input">Km</label>
-                            <input type="text" class="form-control sub" name="km">
+                            <input type="text" class="form-control sub" name="km" placeholder="km">
 
-                            <label class="lab-input">Description</label>
-                            <textarea name="description" class="form-control sub-text" rows="5" cols="80"></textarea>
+                            <textarea name="description" class="form-control sub-text" rows="5" cols="80" placeholder="Description"></textarea>
 
-                            <label class="lab-input">Prix total</label>
-                            <input type="text" class="form-control sub" name="prix">
+                            <input type="text" class="form-control sub" name="prix" placeholder="prix total">
 
                         </div>
 
@@ -444,21 +456,38 @@
     <?php foreach ($historique as $histo){ ?>
 
         <div id="modal-update-entretien-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-          <div class="modal-dialog " role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Ajout d'une opération</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                  <div class="img-around-entretien">
+
+                      <?php foreach ($moto as $raw) {
+                          $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                          if($picture == true){ ?>
+
+                          <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+
+                      <?php }else{
+
+                              $substrName = substr($raw->nom_Modele, 0, 3);
+
+                          ?>
+                              <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                          <?php }} ?>
+                  </div>
               </div>
               <div class="modal-body">
+
+                <h4 class="mt-1 mb-2">Modifier un entretien</h4>
+                <hr class="horizontal-line hr-modal-km">
                 <?php echo validation_errors();
                       echo form_open('moto/modif_historique/'.$histo->id, 'id="form_operation"'); ?>
                       <div class="modal-form">
 
                             <div class="form-group form-group1">
-                                <label class="lab-input">Type</label>
                                 <select class="form-control sub" name="id_operation">
 
                                     <?php foreach ($operation as $row) { ?>
@@ -474,16 +503,12 @@
 
                                 </select>
 
-                                <label class="lab-input">Date</label>
                                 <input type="date" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
 
-                                <label class="lab-input">Km</label>
                                 <input type="text" class="form-control sub" name="km" value="<?= $histo->km; ?>">
 
-                                <label class="lab-input">Description</label>
                                 <textarea name="description" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
 
-                                <label class="lab-input">Prix total</label>
                                 <input type="text" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
                                 <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
@@ -510,7 +535,25 @@
                     <div class="modal-content">
                       <!--Header-->
                       <div class="modal-header">
-                        <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="rounded-circle img-responsive" id="detailImg" alt="mes motos">
+                          <div class="img-around-km">
+
+                              <?php foreach ($moto as $raw) {
+                                  $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                                  if($picture == true){ ?>
+
+                                  <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-km" id="" alt="mes motos">
+
+                              <?php }else{
+
+                                      $substrName = substr($raw->nom_Modele, 0, 3);
+
+                                  ?>
+                                      <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                                  <?php }} ?>
+                          </div>
                       </div>
                       <!--Body-->
                       <div class="modal-body text-center mb-1">
