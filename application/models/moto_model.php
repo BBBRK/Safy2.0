@@ -88,6 +88,8 @@
 
     public function ajout_operation($historique){
 
+
+
         $this->db->insert("historique", $historique);
 
     }
@@ -122,7 +124,7 @@
 
     public function get_historique($id_Moto){
 
-        $requete = $this->db->query("SELECT historique.description, historique.date, historique.km, historique.prix, historique.id, operation.type
+        $requete = $this->db->query("SELECT historique.description, historique.date_operation, historique.km, historique.prix, historique.id, operation.type
                                      FROM historique
                                      JOIN operation
                                      ON historique.id_operation = operation.id
@@ -137,13 +139,23 @@
 
     /* -------------------------------------------------------------------- */
 
-    public function modif_historique($id_operation){
+    public function modif_historique($id_operation, $data){
 
-        $requete = $this->db->query("SELECT *
-                                     FROM Historique
+        $description = $data['description'];
+        $date_operation = $data['date_operation'];
+        $prix = $data['prix'];
+        $km = $data['km'];
+
+        unset($data['id_Moto']);
+
+
+
+        $requete = $this->db->query("UPDATE Historique
+                                     SET description = '$description',
+                                         date_operation = '$date_operation',
+                                         prix = $prix,
+                                         km = $km
                                      WHERE id=?", array($id_operation));
-
-        return $requete->result();
     }
 
     /* -------------------------------------------------------------------- */
@@ -191,7 +203,7 @@
 
         /* ------- */
 
-        $purge_frein = $this->db->query("SELECT MAX(date) as maxdate
+        $purge_frein = $this->db->query("SELECT MAX(date_operation) as maxdate
                                          FROM historique
                                          WHERE id_operation=3
                                          AND id_moto=?",

@@ -14,35 +14,33 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
+            <?php if($this->session->user): ?>
+
             <ul class="navbar-nav  mr-auto">
                 <li class="nav_item">
-                    <a class="nav-link" id="navnav" href="<?php echo site_url('safy/userindex'); ?>">Mes motos</a>
+                    <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('safy/userindex'); ?>">Mes motos</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav  ml-auto">
+
                 <li class="nav_item">
-                    <?php if($this->session->user): ?>
-                    <a class="nav-link" id="navnav" href="<?php echo site_url('register/logout'); ?>">Deconnexion</a>
+                    <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/logout'); ?>">Deconnexion</a>
                 </li>
-
                 <li class="nav_item">
-                    <?php else: ?>
-                    <a class="nav-link" id="navnav" href="<?php echo site_url('register/subscribe'); ?>">Inscription</a>
-                    <?php endif; ?>
+                    <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/login'); ?>">Bonjour <?= $this->session->user->prenom_Proprietaire ;?></a>
                 </li>
-
-
-                <li class="nav_item">
-                    <?php if($this->session->user): ?>
-                    <a class="nav-link" id="navnav" href="<?php echo site_url('register/login'); ?>">Bonjour <?= $this->session->user->prenom_Proprietaire ;?></a>
-                </li>
-
-                <li class="nav_item">
                 <?php else: ?>
-                    <a class="nav-link" id="navnav" href="<?php echo site_url('register/login'); ?>">Connexion</a>
+
+                    <ul class="navbar-nav  ml-auto">
+                        <li class="nav_item">
+                            <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/login') ?>">Connexion</a>
+                        </li>
+                    </ul>
                 <?php endif; ?>
-                </li>
             </ul>
         </div>
     </nav>

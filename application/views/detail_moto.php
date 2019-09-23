@@ -386,21 +386,38 @@
                     <!-- AJOUT ENTRETIEN -->
 
     <div id="modal-entretien" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Ajout d'une opération</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <div class="img-around-entretien">
+
+                  <?php foreach ($moto as $raw) {
+                      $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                      if($picture == true){ ?>
+
+                      <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+
+                  <?php }else{
+
+                          $substrName = substr($raw->nom_Modele, 0, 3);
+
+                      ?>
+                          <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                      <?php }} ?>
+              </div>
           </div>
           <div class="modal-body">
+
+            <h4 class="mt-1 mb-2">Ajouter un entretien</h4>
+            <hr class="horizontal-line hr-modal-km">
             <?php echo validation_errors(); ?>
               <?php echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
                   <div class="modal-form">
 
                         <div class="form-group form-group1">
-                            <label class="lab-input">Type</label>
                             <select class="form-control sub" name="id_operation">
                                 <?php foreach ($operation as $row) {
                                     echo '<option value='.$row->id.'>'.$row->type.'</option>';
@@ -409,23 +426,18 @@
 
                             </select>
 
-
                             <!-- Champs caché pour reccuperer l'id dans la fonction "ajout_operation" dans le controller -->
                             <?php foreach ($moto as $raw) { ?>
                             <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
                             <?php } ?>
 
-                            <label class="lab-input">Date</label>
-                            <input type="date" class="form-control sub" name="date">
+                            <input type="date" class="form-control sub" name="date_operation" placeholder="30/11/1992">
 
-                            <label class="lab-input">Km</label>
-                            <input type="text" class="form-control sub" name="km">
+                            <input type="text" class="form-control sub" name="km" placeholder="km">
 
-                            <label class="lab-input">Description</label>
-                            <textarea name="description" class="form-control sub-text" rows="5" cols="80"></textarea>
+                            <textarea name="description" class="form-control sub-text" rows="5" cols="80" placeholder="Description"></textarea>
 
-                            <label class="lab-input">Prix total</label>
-                            <input type="text" class="form-control sub" name="prix">
+                            <input type="text" class="form-control sub" name="prix" placeholder="prix total">
 
                         </div>
 
@@ -443,24 +455,39 @@
 
     <?php foreach ($historique as $histo){ ?>
 
-
-
         <div id="modal-update-entretien-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-          <div class="modal-dialog " role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Ajout d'une opération</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                  <div class="img-around-entretien">
+
+                      <?php foreach ($moto as $raw) {
+                          $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                          if($picture == true){ ?>
+
+                          <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+
+                      <?php }else{
+
+                              $substrName = substr($raw->nom_Modele, 0, 3);
+
+                          ?>
+                              <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                          <?php }} ?>
+                  </div>
               </div>
               <div class="modal-body">
+
+                <h4 class="mt-1 mb-2">Modifier un entretien</h4>
+                <hr class="horizontal-line hr-modal-km">
                 <?php echo validation_errors();
-                      echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
+                      echo form_open('moto/modif_historique/'.$histo->id, 'id="form_operation"'); ?>
                       <div class="modal-form">
 
                             <div class="form-group form-group1">
-                                <label class="lab-input">Type</label>
                                 <select class="form-control sub" name="id_operation">
 
                                     <?php foreach ($operation as $row) { ?>
@@ -473,20 +500,18 @@
                                         <?php
                                     }
                                     ?>
+
                                 </select>
 
-                                <label class="lab-input">Date</label>
-                                <input type="date" class="form-control sub" name="date" value="<?= $histo->date; ?>">
+                                <input type="date" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
 
-                                <label class="lab-input">Km</label>
                                 <input type="text" class="form-control sub" name="km" value="<?= $histo->km; ?>">
 
-                                <label class="lab-input">Description</label>
                                 <textarea name="description" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
 
-                                <label class="lab-input">Prix total</label>
                                 <input type="text" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
+                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
                             </div>
 
                             <button type="submit" class="btn btn-primary submit">Submit</button>
@@ -497,31 +522,52 @@
                 </div>
               </div>
             </div>
+
         <?php } ?>
 
 
                     <!-- MISE A JOUR KM -->
 
-    <div id="modal-km" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Mise à jour kilomètrique</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <?php echo validation_errors(); ?>
-              <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
-              <div id="error_msg">
+                <div class="modal fade" id="modal-km" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog cascading-modal modal-avatar modal-dialog-centered modal-sm" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                      <!--Header-->
+                      <div class="modal-header">
+                          <div class="img-around-km">
 
-              </div>
-                  <div class="modal-form">
+                              <?php foreach ($moto as $raw) {
+                                  $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+
+                                  if($picture == true){ ?>
+
+                                  <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-km" id="" alt="mes motos">
+
+                              <?php }else{
+
+                                      $substrName = substr($raw->nom_Modele, 0, 3);
+
+                                  ?>
+                                      <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+
+
+                                  <?php }} ?>
+                          </div>
+                      </div>
+                      <!--Body-->
+                      <div class="modal-body text-center mb-1">
+
+                        <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
+                        <hr class="horizontal-line hr-modal-km">
+
+
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
+                          <div id="error_msg"></div>
 
                         <div class="form-group form-group1">
-                            <label class="lab-input">Kilomètrage</label>
-                            <input type="text" class="form-control sub" id="km" name="km_Moto">
+                            <input type="text" class="form-control input-km" id="km" name="km_Moto" placeholder="4500">
 
                             <?php foreach ($moto as $raw) { ?>
                             <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
@@ -530,13 +576,15 @@
 
                         <button type="submit" class="btn btn-primary submit">Submit</button>
                       </form>
+                      </div>
 
+                    </div>
+                    <!--/.Content-->
                   </div>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
+                </div>
+
+
+
 
 
 
@@ -554,15 +602,7 @@
         <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
         <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
 
-
-
-
         <!-- <script src="<?php // echo base_url('assets/script/ajax_km_error.js');?>"></script> -->
-
-
-
-
-
 
     </body>
 
@@ -599,11 +639,11 @@
                         result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
                         result += "<td class='height-row click'>" + historique.description + "</td>";
                         result += "<td class='height-row'>" + historique.km + " km" + "</td>";
-                        result += "<td class='height-row'>" + historique.date + "</td>";
+                        result += "<td class='height-row'>" + historique.date_operation + "</td>";
                         result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
                         result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
                         result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
-                        result += "<td class='height-row'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' name='facture'><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input type='submit' class='butn btn btn-lg' value='Valider'></form></td></tr>"
+                        result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' id='uploadFacture' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture' type='submit' class='butn btn btn-lg' value='Valider'></form></div></td></tr>"
 // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
 
 

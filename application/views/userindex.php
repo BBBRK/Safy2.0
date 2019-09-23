@@ -67,7 +67,7 @@
 
                                     <!-- Function if the user dont customise the picture, a standar picture of the bike is display -->
                                     <?php
-                                    $picture = file_exists("C:\wamp\www\safymotor\assets\images\photo_user/$row->id_Moto.jpg");
+                                    $picture = file_exists("C:\wamp\www\Safy2.0\assets\images\photo_user/$row->id_Moto.jpg");
 
                                     if($picture == true){ ?>
 
