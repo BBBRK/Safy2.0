@@ -628,6 +628,7 @@
              var id = <?php echo $moto[0]->id_Moto; ?>;
 
 
+
             $.ajax({
                 url: "<?= site_url("moto/historique") ?>/" + idMoto,
                 dataType: "json",
@@ -656,6 +657,16 @@
 
                         var idFacture = this.parentNode.id.slice(6);
                         $("#modal-facture-" + idFacture).modal("show");
+                    });
+
+
+
+
+                    //trigger du submit facture
+                    $('#uploadFacture').change(function(){
+                        $('#submit-facture').trigger('click');
+
+                        console.log('clicked');
                     });
 
                 },

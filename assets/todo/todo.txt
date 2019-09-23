@@ -16,10 +16,9 @@ features à build:
   choses à faire:
   ---------------
 
-    - Refonte des modals
     - Refonte du design dans l'onglet historique
-    - animation des progressbar au click
-    - Cacher le bouton d'upload des factures + le submit <= fait, declenchement submit marche pas
+    - animation des progressbar
+
 
 
 
@@ -28,41 +27,3 @@ features à build:
 
     - Centrer les cards dans userindex
     - Delete historique ne fonctionne plus ???
-
-
-
-    <div id="modal-km" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Mise à jour kilomètrique</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <?php echo validation_errors(); ?>
-              <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
-              <div id="error_msg">
-
-              </div>
-                  <div class="modal-form">
-
-                        <div class="form-group form-group1">
-                            <label class="lab-input">Kilomètrage</label>
-                            <input type="text" class="form-control sub" id="km" name="km_Moto">
-
-                            <?php foreach ($moto as $raw) { ?>
-                            <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
-                            <?php } ?>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary submit">Submit</button>
-                      </form>
-
-                  </div>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>

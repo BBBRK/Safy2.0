@@ -3,8 +3,8 @@ $('#uploadPhoto').change(function(){
 });
 
 
-$('#uploadFacture').change(function(){
-    $('#submit-facture').trigger('click');
-
-    console.log('clicked');
-});
+// $('#uploadFacture').change(function(){
+//     $('#submit-facture').trigger('click');
+//
+//     console.log('clicked');
+// });
