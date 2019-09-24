@@ -635,56 +635,58 @@
                 success: function(data){
 
                     var result = "";
-                    for(var historique of data){
+                                      for(var historique of data){
+                                          result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
+                                          result += "<td class='height-row click-facture'>" + historique.description + "</td>";
+                                          result += "<td class='height-row'>" + historique.km + " km" + "</td>";
+                                          result += "<td class='height-row'>" + historique.date_operation + "</td>";
+                                          result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
+                                          result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
+                                          result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
+                                          result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post' class='form-facture'><input type='file' id='uploadFacture-" + historique.id + "' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture-" + historique.id + "' type='submit' class='butn btn btn-lg submit-facture' value='Valider'></form></div></td></tr>"
+                  // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
+                                      }
+                                      $("#tr").html(result);
 
-                        result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
-                        result += "<td class='height-row click'>" + historique.description + "</td>";
-                        result += "<td class='height-row'>" + historique.km + " km" + "</td>";
-                        result += "<td class='height-row'>" + historique.date_operation + "</td>";
-                        result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
-                        result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
-                        result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
-                        result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' id='uploadFacture' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture' type='submit' class='butn btn btn-lg' value='Valider'></form></div></td></tr>"
-// <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
 
-
-                    }
-                    $("#tr").html(result);
-
-                    $(".click").click(function(){
-
-                        // console.log(this.parentNode.id);
-
+                    // Onclick sur la description pour display le modal
+                    $(".click-facture").click(function(){
+                        console.log('ok');
                         var idFacture = this.parentNode.id.slice(6);
                         $("#modal-facture-" + idFacture).modal("show");
+
                     });
-
-
 
 
                     //trigger du submit facture
-                    $('#uploadFacture').change(function(){
-                        $('#submit-facture').trigger('click');
+                        var formFacture = $('.form-facture');
+                        var nbOperation = formFacture.length;
+                        var ids = [];
 
-                        console.log('clicked');
-                    });
+                        for (var i = 0; i < nbOperation; i++) {
+                            ids.push(formFacture[i].lastElementChild.id.slice(15));
+                            var last = ids.pop();
+                            ids.push(last);
+
+                            document.getElementById('uploadFacture-' + last).addEventListener('input', autosubmit(ids[i]));
+                        }
+
+                        function autosubmit(id){
+
+                            return function (event) {
+
+                                $('#submit-facture-' + id).trigger('click');
+                                console.log('clicked ' + id);
+                            }
+                        }
+
 
                 },
                 error: function(){
                     alert("ERREUR.");
                 }
             });
-
-
             divHistorique.style.display = "block";
-
-
-            // $(document).ajaxComplete(function(){
-            //
-            //
-            // })
-
-
         }
 
     </script>
