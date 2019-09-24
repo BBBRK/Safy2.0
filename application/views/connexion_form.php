@@ -56,6 +56,8 @@ include("assets/php/entete.php");
                     <input type="password" class="form-control sub" name="password">
                   </div>
 
+                  <small><a href="<?php echo site_url('register/reset_password'); ?>">Mot de passe oublié ?</a></small>
+
                   <button type="submit" class="btn btn-primary submit">Submit</button>
                 </form>
 

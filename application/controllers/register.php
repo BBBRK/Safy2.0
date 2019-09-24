@@ -80,6 +80,16 @@ class register extends CI_Controller {
     }
 
 
+    public function reset_password(){
+
+
+
+
+        if ($data = $this->input->post()){
+
+            $this->load->model('register_model');
+
+            $result = $this->register_model->email_exist($data['email']);
 
 
 
@@ -87,6 +97,11 @@ class register extends CI_Controller {
 
 
 
+        }
+        else{
+            $this->load->view('reset_password_view');
+        }
+    }
 
 
 }
