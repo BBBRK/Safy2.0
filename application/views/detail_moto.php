@@ -365,17 +365,12 @@
         <?php foreach ($historique as $histo){ ?>
 
         <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Gestion des factures</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
               <div class="modal-body">
-
-                  <img src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
+                  <h4 class="mt-1 mb-2">Votre facture</h4>
+                  <hr class="horizontal-line hr-modal-km">
+                  <img class="img-facture" src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
               </div>
             </div>
           </div>
@@ -555,12 +550,12 @@
                                   <?php }} ?>
                           </div>
                       </div>
+
                       <!--Body-->
                       <div class="modal-body text-center mb-1">
 
                         <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
                         <hr class="horizontal-line hr-modal-km">
-
 
                     <?php echo validation_errors(); ?>
                     <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
@@ -651,12 +646,10 @@
 
                     // Onclick sur la description pour display le modal
                     $(".click-facture").click(function(){
-                        console.log('ok');
                         var idFacture = this.parentNode.id.slice(6);
                         $("#modal-facture-" + idFacture).modal("show");
 
                     });
-
 
                     //trigger du submit facture
                         var formFacture = $('.form-facture');
@@ -672,15 +665,11 @@
                         }
 
                         function autosubmit(id){
-
                             return function (event) {
 
                                 $('#submit-facture-' + id).trigger('click');
-                                console.log('clicked ' + id);
                             }
                         }
-
-
                 },
                 error: function(){
                     alert("ERREUR.");
@@ -688,7 +677,6 @@
             });
             divHistorique.style.display = "block";
         }
-
     </script>
 
 

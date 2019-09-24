@@ -19,9 +19,6 @@ features à build:
     - Refonte du design dans l'onglet historique
     - animation des progressbar
 
-
-
-
   bugs à traiter:
   ---------------
 
