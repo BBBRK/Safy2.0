@@ -365,12 +365,17 @@
         <?php foreach ($historique as $histo){ ?>
 
         <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-          <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Gestion des factures</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
               <div class="modal-body">
-                  <h4 class="mt-1 mb-2">Votre facture</h4>
-                  <hr class="horizontal-line hr-modal-km">
-                  <img class="img-facture" src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
+
+                  <img src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
               </div>
             </div>
           </div>
@@ -550,12 +555,12 @@
                                   <?php }} ?>
                           </div>
                       </div>
-
                       <!--Body-->
                       <div class="modal-body text-center mb-1">
 
                         <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
                         <hr class="horizontal-line hr-modal-km">
+
 
                     <?php echo validation_errors(); ?>
                     <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
@@ -623,60 +628,54 @@
              var id = <?php echo $moto[0]->id_Moto; ?>;
 
 
-
             $.ajax({
                 url: "<?= site_url("moto/historique") ?>/" + idMoto,
                 dataType: "json",
                 success: function(data){
 
                     var result = "";
-                                      for(var historique of data){
-                                          result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
-                                          result += "<td class='height-row click-facture'>" + historique.description + "</td>";
-                                          result += "<td class='height-row'>" + historique.km + " km" + "</td>";
-                                          result += "<td class='height-row'>" + historique.date_operation + "</td>";
-                                          result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
-                                          result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
-                                          result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
-                                          result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post' class='form-facture'><input type='file' id='uploadFacture-" + historique.id + "' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture-" + historique.id + "' type='submit' class='butn btn btn-lg submit-facture' value='Valider'></form></div></td></tr>"
-                  // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
-                                      }
-                                      $("#tr").html(result);
+                    for(var historique of data){
+
+                        result += '<tr id="click-' + historique.id + '"><td class="height-row">' + historique.type + '</td>';
+                        result += "<td class='height-row click'>" + historique.description + "</td>";
+                        result += "<td class='height-row'>" + historique.km + " km" + "</td>";
+                        result += "<td class='height-row'>" + historique.date_operation + "</td>";
+                        result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
+                        result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
+                        result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
+                        result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post'><input type='file' id='uploadFacture' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture' type='submit' class='butn btn btn-lg' value='Valider'></form></div></td></tr>"
+// <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
 
 
-                    // Onclick sur la description pour display le modal
-                    $(".click-facture").click(function(){
+                    }
+                    $("#tr").html(result);
+
+                    $(".click").click(function(){
+
+                        // console.log(this.parentNode.id);
+
                         var idFacture = this.parentNode.id.slice(6);
                         $("#modal-facture-" + idFacture).modal("show");
-
                     });
 
-                    //trigger du submit facture
-                        var formFacture = $('.form-facture');
-                        var nbOperation = formFacture.length;
-                        var ids = [];
-
-                        for (var i = 0; i < nbOperation; i++) {
-                            ids.push(formFacture[i].lastElementChild.id.slice(15));
-                            var last = ids.pop();
-                            ids.push(last);
-
-                            document.getElementById('uploadFacture-' + last).addEventListener('input', autosubmit(ids[i]));
-                        }
-
-                        function autosubmit(id){
-                            return function (event) {
-
-                                $('#submit-facture-' + id).trigger('click');
-                            }
-                        }
                 },
                 error: function(){
                     alert("ERREUR.");
                 }
             });
+
+
             divHistorique.style.display = "block";
+
+
+            // $(document).ajaxComplete(function(){
+            //
+            //
+            // })
+
+
         }
+
     </script>
 
 
