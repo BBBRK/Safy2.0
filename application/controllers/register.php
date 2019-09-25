@@ -91,6 +91,8 @@ class register extends CI_Controller {
 
             $result = $this->register_model->email_exist($data['email']);
 
+            var_dump($result);
+
 
 
 

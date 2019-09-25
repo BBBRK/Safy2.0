@@ -44,16 +44,15 @@
             // $result = $this->db->query($sql);
             $row = $result->row();
 
-            var_dump($row);
-            exit;
 
-            if ($row->num_row() === 1 && $row->mail_Proprietaire) {
-                var_dump('C BON');
-                exit;
+            // var_dump($row);
+            // exit;
+
+            if ($row === null) {
+                return false;
             }
             else {
-                var_dump('C PAS BON');
-                exit;
+                return $row->prenom_Proprietaire;
             }
 
 
