@@ -30,6 +30,24 @@
 
     <h2>Mot de passe oublié ?</h2>
 
+    <?php
+        if($this->session->flashdata("email-ok")){
+            echo
+                '<div class="ok-messages">'
+                    .$this->session->flashdata("email-fail").
+                '</div>';
+        }
+
+        if($this->session->flashdata("email-ok")){
+            echo
+                '<div class="alerte-messages-connexion">'
+                    .$this->session->flashdata("email-fail").
+                '</div>';
+        }
+     ?>
+
+
+
 
     <?php echo form_open_multipart(); ?>
         <div class="connexion-form">

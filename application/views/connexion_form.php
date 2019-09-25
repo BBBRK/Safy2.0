@@ -29,7 +29,7 @@ include("assets/php/entete.php");
             <div class="connexion-form">
 
                 <?php
-                    //aerreur connexion
+                    //erreur connexion
                     if($this->session->flashdata('message')){
                         echo
                             '<div class="alerte-messages-connexion">'

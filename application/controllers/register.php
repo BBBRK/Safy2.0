@@ -84,26 +84,59 @@ class register extends CI_Controller {
 
 
 
-
         if ($data = $this->input->post()){
-
             $this->load->model('register_model');
-
             $result = $this->register_model->email_exist($data['email']);
+            if ($result != false) {
 
-            var_dump($result);
+                //load library
+                $this->load->library('Phpmailer_lib');
 
+                //create new mail object
+                $mail = $this->phpmailer_lib->load();
 
+                // setup SMTP
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'jimmy.bbbrk@gmail.com';
+                $mail->Password = 'eterlol525';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
 
+                $mail->setFrom('jimmy.bbbrk@gmail.com', 'Safy');
 
+                // Add a recipient
+                $mail->addAddress($data['email']);
+                
+                // Email subject
+                $mail->Subject = 'Mot de passe oublié ?';
 
+                // Email body content
+                $mailContent = "<h1>Bonjour ".$result."</h1>
+                    <p>il semblerait que vous ayez oublié votre mot de passe, pour en créer un nouveau, cliquez sur ce lien</p>";
+                $mail->Body = $mailContent;
 
-
+                // Send email
+                if(!$mail->send()){
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: '.$mail->ErrorInfo;
+                }else{
+                    $this->session->set_flashdata("email-ok", "Un e-mail vous a été envoyé.");
+                    $this->load->view('reset_password_view');
+                }
+            }
+            else{
+                $this->session->set_flashdata("email-fail", "Une erreur s'est produite");
+                $this->load->view('reset_password_view'); //+ passer un message d'erreur
+            }
         }
         else{
             $this->load->view('reset_password_view');
         }
     }
+
+
 
 
 }
