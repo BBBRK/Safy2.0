@@ -80,14 +80,36 @@ class register extends CI_Controller {
     }
 
 
-    public function reset_password(){
+    public function reset_password($id){
+
+        if ($data = $this->input->post()){
+
+            var_dump($data);
+
+            if ($data['newPassword'] === $data['confirmPassword']) {
+                $this->load->model('register_model');
+            }
+            else{
+                $this->load->view('reset_password_view'); // mettre une alerte mdp pas les meme
+            }
 
 
+
+
+        }
+        else{
+            $this->load->view('reset_password_view');
+        }
+    }
+
+
+    public function reset_password_email(){
 
         if ($data = $this->input->post()){
             $this->load->model('register_model');
             $result = $this->register_model->email_exist($data['email']);
-            if ($result != false) {
+
+            if ($result != false){
 
                 //load library
                 $this->load->library('Phpmailer_lib');
@@ -103,18 +125,19 @@ class register extends CI_Controller {
                 $mail->Password = 'eterlol525';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
+                $mail->iSHtml(true);
 
                 $mail->setFrom('jimmy.bbbrk@gmail.com', 'Safy');
 
                 // Add a recipient
-                $mail->addAddress($data['email']);
-                
+                $mail->addAddress($result->mail_Proprietaire);
+
                 // Email subject
                 $mail->Subject = 'Mot de passe oublié ?';
 
                 // Email body content
-                $mailContent = "<h1>Bonjour ".$result."</h1>
-                    <p>il semblerait que vous ayez oublié votre mot de passe, pour en créer un nouveau, cliquez sur ce lien</p>";
+                $mailContent = "<h1>Bonjour ".$result->prenom_Proprietaire."</h1>
+                    <p>Il semblerait que vous ayez oublié votre mot de passe, pour en créer un nouveau, <a href='".site_url('register/reset_password/'.$result->id_Proprietaire)."'>Cliquez sur ce lien</a></p>";
                 $mail->Body = $mailContent;
 
                 // Send email
@@ -123,16 +146,16 @@ class register extends CI_Controller {
                     echo 'Mailer Error: '.$mail->ErrorInfo;
                 }else{
                     $this->session->set_flashdata("email-ok", "Un e-mail vous a été envoyé.");
-                    $this->load->view('reset_password_view');
+                    $this->load->view('reset_password_email');
                 }
             }
             else{
                 $this->session->set_flashdata("email-fail", "Une erreur s'est produite");
-                $this->load->view('reset_password_view'); //+ passer un message d'erreur
+                $this->load->view('reset_password_email'); //+ passer un message d'erreur
             }
         }
         else{
-            $this->load->view('reset_password_view');
+            $this->load->view('reset_password_email');
         }
     }
 

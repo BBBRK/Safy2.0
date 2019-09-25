@@ -34,38 +34,17 @@
             return $user;
         }
 
-
         public function email_exist($email){
-
-
-            $result = $this->db->query("SELECT mail_Proprietaire, prenom_Proprietaire FROM proprietaire WHERE mail_Proprietaire= ?", $email);
-
-
-            // $result = $this->db->query($sql);
+            $result = $this->db->query("SELECT mail_Proprietaire, prenom_Proprietaire, id_Proprietaire FROM proprietaire WHERE mail_Proprietaire= ?", $email);
             $row = $result->row();
-
-
-            // var_dump($row);
-            // exit;
 
             if ($row === null) {
                 return false;
             }
             else {
-                return $row->prenom_Proprietaire;
+                return $row;
             }
-
-
         }
-
-
-
-
-
-
-
     }
-
-
 
  ?>

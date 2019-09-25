@@ -28,17 +28,34 @@
     </nav>
 
 
-    <h2>Réinitialisez votre mot de passe.</h2>
+    <h2>Mot de passe oublié ?</h2>
+
+    <?php
+        if($this->session->flashdata("email-ok")){
+            echo
+                '<div class="ok-messages">'
+                    .$this->session->flashdata("email-ok").
+                '</div>';
+        }
+
+        if($this->session->flashdata("email-fail")){
+            echo
+                '<div class="alerte-messages-connexion">'
+                    .$this->session->flashdata("email-fail").
+                '</div>';
+        }
+     ?>
+
+
+
 
     <?php echo form_open_multipart(); ?>
         <div class="connexion-form">
             <div class="form-group">
-                <label class="lab-input">Nouveau mot de passe :</label>
-                <input type="password" class="form-control sub" name="newPassword">
-                <label class="lab-input">Confirmer le mot de passe :</label>
-                <input type="password" class="form-control sub" name="confirmPassword">
+                <label class="lab-input">Email :</label>
+                <input type="email" class="form-control sub" name="email">
             </div>
-            <button type="submit" class="btn btn-primary submit">Réinitialiser</button>
+            <button type="submit" class="btn btn-primary submit">Envoyer l'email</button>
         </div>
     </form>
 
