@@ -44,6 +44,7 @@ class register extends CI_Controller {
             $email = $data['email'];
             $password = $data['password'];
 
+
             $user = $this->register_model->login($email);
 
 
@@ -94,10 +95,6 @@ class register extends CI_Controller {
             else{
                 $this->load->view('reset_password_view'); // mettre une alerte mdp pas les meme
             }
-
-
-
-
         }
         else{
             $this->load->view('reset_password_view');

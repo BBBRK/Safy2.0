@@ -2,14 +2,11 @@
 
     class register_model extends CI_Model {
 
-
         public function register(){
 
             // password encryption
             $data = $this->input->post();
             $data['pw_Proprietaire'] = password_hash($data['pw_Proprietaire'], PASSWORD_DEFAULT);
-
-
 
             unset($data['verification_key']);
 
@@ -45,6 +42,8 @@
 
 
         public function reset_password($data){
+
+          $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
 
             $this->db->query("UPDATE proprietaire
                               SET pw_Proprietaire = '".$data["newPassword"]."'
