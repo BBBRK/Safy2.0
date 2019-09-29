@@ -10,8 +10,7 @@ features à build:
   - Connexion à une API pour reccuperer les informations machine dans la view detail_moto
   - Inclure dans l'index l'inscription et connexion (modal ?, déroulant ?) et virer les view de merde
   - Reflechir aux révisions constructeurs
-  - Gerer les mdp oublié
-
+  - Gerer les mdp oublié => ok, crypter le nouveau mot de passe
 
   choses à faire:
   ---------------

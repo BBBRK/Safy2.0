@@ -84,10 +84,12 @@ class register extends CI_Controller {
 
         if ($data = $this->input->post()){
 
-            var_dump($data);
+            $data['id'] = $id;
 
             if ($data['newPassword'] === $data['confirmPassword']) {
+
                 $this->load->model('register_model');
+                $this->register_model->reset_password($data);
             }
             else{
                 $this->load->view('reset_password_view'); // mettre une alerte mdp pas les meme

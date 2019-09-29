@@ -19,18 +19,15 @@
             $age = floor($age);
             $data['age_Proprietaire'] = $age;
 
-
             unset($data['pw_confirm']); //permet que le champ ne soit pas entrer en DB
             $this->db->insert("proprietaire", $data);
             return $this->db->insert_id();
 
         }
 
-
         public function login($email){
 
             $user = $this->db->query("SELECT * FROM proprietaire WHERE mail_Proprietaire=?", $email)->row();
-
             return $user;
         }
 
@@ -44,6 +41,14 @@
             else {
                 return $row;
             }
+        }
+
+
+        public function reset_password($data){
+
+            $this->db->query("UPDATE proprietaire
+                              SET pw_Proprietaire = '".$data["newPassword"]."'
+                              WHERE id_Proprietaire =?", $data["id"]);
         }
     }
 
