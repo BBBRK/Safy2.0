@@ -42,10 +42,7 @@ class register extends CI_Controller {
         {
             $email = $data['email'];
             $password = $data['password'];
-
-
             $user = $this->register_model->login($email);
-
 
                 if($user){
                         if (password_verify($password, $user->pw_Proprietaire)) {

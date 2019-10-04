@@ -551,7 +551,7 @@
                            <?php } ?>
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit submit-km">Submit</button>
+                       <button type="submit" class="btn btn-primary submit submit-km" disabled>Submit</button>
                      </form>
                      </div>
                    </div>
@@ -599,7 +599,7 @@
                                          result += "<td class='height-row'>" + historique.date_operation + "</td>";
                                          result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
                                          result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
-                                         result += "<td class='height-row'><a href='http://localhost/safymotor/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
+                                         result += "<td class='height-row'><a href='http://localhost/Safy2.0/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
                                          result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post' class='form-facture'><input type='file' id='uploadFacture-" + historique.id + "' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture-" + historique.id + "' type='submit' class='butn btn btn-lg submit-facture' value='Valider'></form></div></td></tr>"
                  // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
                                      }
