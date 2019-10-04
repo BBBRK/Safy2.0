@@ -529,9 +529,8 @@
                                      $substrName = substr($raw->nom_Modele, 0, 3);
                                  ?>
                                      <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
-
-
                                  <?php }} ?>
+
                          </div>
                      </div>
                      <!--Body-->
@@ -539,7 +538,6 @@
 
                        <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
                        <hr class="horizontal-line hr-modal-km">
-
 
                    <?php echo validation_errors(); ?>
                    <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
@@ -553,19 +551,12 @@
                            <?php } ?>
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit">Submit</button>
+                       <button type="submit" class="btn btn-primary submit submit-km">Submit</button>
                      </form>
                      </div>
-
                    </div>
-                   <!--/.Content-->
                  </div>
                </div>
-
-
-
-
-
 
    </script>
 
@@ -580,11 +571,10 @@
        <script src="<?php echo base_url('assets/script/user-photo-autosubmit.js');?>"></script>
        <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
        <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
+       <script src="<?php echo base_url('assets/script/check-form-km.js'); ?>"></script>
 
        <!-- <script src="<?php // echo base_url('assets/script/ajax_km_error.js');?>"></script> -->
-
    </body>
-
 
    <script>
        var divSante = document.querySelector(".moto-sante");

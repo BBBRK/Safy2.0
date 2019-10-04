@@ -52,33 +52,28 @@
                 <hr class="horizontal-line">
 
             <div class="col-cards container">
-                    <div class="row">
+                <div class="row">
+                    <?php
+                        // fonction permettant d'afficher 3 carte/ligne
+                        $colNumber = 3;
+                        $cardCount = 0;
 
-                        <?php
-                            // fonction permettant d'afficher 3 carte/ligne
-                            $colNumber = 3;
-                            $cardCount = 0;
+                        foreach ($moto as $row){
+                    ?>
+                    <div class="col col-lg-4 col-md-6 col-12">
+                        <div class="card">
+                            <!-- Function if the user dont customise the picture, a standar picture of the bike is display -->
+                            <?php
+                                $picture = file_exists("C:\wamp\www\Safy2.0\assets\images\photo_user/$row->id_Moto.jpg");
 
-                            foreach ($moto as $row){
-                        ?>
-                            <div class="col col-lg-4 col-md-6 col-12 test">
-                                <div class="card">
-
-
-                                    <!-- Function if the user dont customise the picture, a standar picture of the bike is display -->
-                                    <?php
-                                    $picture = file_exists("C:\wamp\www\Safy2.0\assets\images\photo_user/$row->id_Moto.jpg");
-
-                                    if($picture == true){ ?>
-
-                                        <img src='<?php echo base_url("assets/images/photo_user/$row->id_Moto");?>' class="cards-photo" alt="mes motos">
-                                    <?php }
-                                    else{
-                                        $substrName = substr($row->nom_Modele, 0, 3);
-                                    ?>
-                                        <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="cards-photo" alt="mes motos">
-
-                                    <?php } ?>
+                                if($picture == true){ ?>
+                                    <img src='<?php echo base_url("assets/images/photo_user/$row->id_Moto");?>' class="cards-photo" alt="mes motos">
+                                <?php }
+                                else{
+                                    $substrName = substr($row->nom_Modele, 0, 3);
+                                ?>
+                                    <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="cards-photo" alt="mes motos">
+                                <?php } ?>
 
                                   <div class="card-body">
                                     <h2 class="card-title"><?php echo $row->nom_Modele; ?></h2>
@@ -87,7 +82,6 @@
                                   </div>
                                 </div>
                             </div>
-
 
                             <?php
                                 // Si 3 card dans la ligne, recreer une ligne
@@ -104,9 +98,6 @@
         </section>
 
         <a class="" href='<?php echo site_url("moto/ajout/"); ?>'><span class="far fa-plus-square fa-3x"></span></a>
-
-
-
 
         <!-- Bootstrap scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -10,16 +10,21 @@ features à build:
   - Connexion à une API pour reccuperer les informations machine dans la view detail_moto
   - Inclure dans l'index l'inscription et connexion (modal ?, déroulant ?) et virer les view de merde
   - Reflechir aux révisions constructeurs
-  - Gerer les mdp oublié => ok, crypter le nouveau mot de passe
+  - Gerer les mdp oublié => ok, par contre la secu c'est pas ça
 
   choses à faire:
   ---------------
 
     - Refonte du design dans l'onglet historique
     - animation des progressbar
+    - Faire les check forms des modals
 
   bugs à traiter:
   ---------------
 
     - Centrer les cards dans userindex
     - Delete historique ne fonctionne plus ???
+
+
+
+uuid v4

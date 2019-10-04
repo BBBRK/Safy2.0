@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class register extends CI_Controller {
 
-
     public function subscribe(){
 
         $this->load->model('register_model');
@@ -71,8 +70,6 @@ class register extends CI_Controller {
         }
 
     }
-
-
 
     public function logout(){
 

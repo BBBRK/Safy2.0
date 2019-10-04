@@ -6,9 +6,7 @@ font-family: 'Oxygen', sans-serif;
 font-family: 'Play', sans-serif;
 */
 
-.test{
-    z-index: 3;
-}
+
 
 body{
 
@@ -42,9 +40,6 @@ small{
     font-size: 1.1rem;
     color: #b8b2a6;
 }
-
-
-
 
 /* ******** INDEX.PHP ******** */
 
@@ -201,7 +196,6 @@ small{
     color: white;
 }
 
-
 .what{
     font-family: 'Play', sans-serif;
     font-weight: bold;
@@ -326,9 +320,6 @@ small{
     padding-bottom: 5px;
 }
 
-.test{
-    padding: 10px;
-}
 
 .card{
     padding: 20px;
