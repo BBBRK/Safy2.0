@@ -5,7 +5,7 @@ var regex = /^[0-9]+$/;
 
 
 
-window.addEventListener('click', checkForm);
+window.addEventListener('blur', checkForm);
 
 function checkForm(){
     if(inputKm.value.match(regex)){
