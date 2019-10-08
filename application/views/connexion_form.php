@@ -29,7 +29,7 @@ include("assets/php/entete.php");
             <div class="connexion-form">
 
                 <?php
-                    //aerreur connexion
+                    //erreur connexion
                     if($this->session->flashdata('message')){
                         echo
                             '<div class="alerte-messages-connexion">'
@@ -55,6 +55,8 @@ include("assets/php/entete.php");
                     <label class="lab-input">Mot de passe :</label>
                     <input type="password" class="form-control sub" name="password">
                   </div>
+
+                  <small><a href="<?php echo site_url('register/reset_password_email'); ?>">Mot de passe oublié ?</a></small>
 
                   <button type="submit" class="btn btn-primary submit">Submit</button>
                 </form>

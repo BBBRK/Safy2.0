@@ -116,12 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 //va chercher l'historique de la moto de la page detail
                 $aData['historique'] = $this->moto_model->get_historique($id_Moto);
 
-
-
-
                 $lifetime = $this->moto_model->lifetime($id_Moto);
-
-
                 // GET THE CURRENT KM TO USE IT AS PARAM ON FOLLOWING FUNCTIONS
                 $current_km = $aData['moto'][0]->km_Moto;
 
@@ -226,8 +221,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $historique = $this->moto_model->get_historique($id_Moto);
 
-
-
             $this->output->set_content_type('application/json');
             $this->output->set_status_header(200);
             $this->output->set_output(json_encode($historique));
@@ -241,6 +234,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $this->load->model('moto_model');
             $this->moto_model->delete_historique($id_historique);
+            redirect('safy/userindex/');
 
         }
 
@@ -256,10 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->moto_model->modif_historique($id_operation, $data);
 
             redirect('moto/detail_moto/'.$data['id_Moto']);
-
-
             }
-
         }
 
 
