@@ -221,12 +221,7 @@
                                                <button type="button" class="btn btn-secondary myPop blink" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="L'usure théorique de votre pneu avant est élevé, nous vous conseillons d'effectuer un contrôle visuel. Le prix moyen d'un changement de pneu avant est de 120€."><i class="fas fa-exclamation"></i></button>
                                            </div>
                                        <?php } ?>
-
                                    </div>
-
-
-
-
 
                                    <div class="row">
                                        <div class="col col-lg-9 col-progressbar">
@@ -407,26 +402,24 @@
                                <?php foreach ($operation as $row) {
                                    echo '<option value='.$row->id.'>'.$row->type.'</option>';
                                } ?>
-
-
                            </select>
 
                            <!-- Champs caché pour reccuperer l'id dans la fonction "ajout_operation" dans le controller -->
                            <?php foreach ($moto as $raw) { ?>
-                           <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
+                               <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
                            <?php } ?>
 
-                           <input type="date" class="form-control sub" name="date_operation" placeholder="30/11/1992">
+                           <input type="date" class="form-control sub" id="date-entretien" name="date_operation" placeholder="30/11/1992">
 
-                           <input type="text" class="form-control sub" name="km" placeholder="km">
+                           <input type="text" class="form-control sub" id="km-entretien" name="km" placeholder="km">
 
-                           <textarea name="description" class="form-control sub-text" rows="5" cols="80" placeholder="Description"></textarea>
+                           <textarea name="description" class="form-control sub-text" id="description-entretien" rows="5" cols="80" placeholder="Description"></textarea>
 
-                           <input type="text" class="form-control sub" name="prix" placeholder="prix total">
+                           <input type="text" class="form-control sub" id="prix-entretien" name="prix" placeholder="prix total">
 
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit">Submit</button>
+                       <button type="submit" id="btn-submit-entretien" class="btn btn-primary submit" disabled>Submit</button>
 
                  </div>
              </form>
@@ -472,31 +465,31 @@
                            <div class="form-group form-group1">
                                <select class="form-control sub" name="id_operation">
 
+                                <!-- MARCHE PAS -->
                                    <?php foreach ($operation as $row) { ?>
                                            <option value="<?php echo $row->id;?>"
                                                <?php if($row->id != ""){
                                                    echo " selected";
                                                }
                                                echo ">".$row->type."</option>\n"; ?>
-
                                        <?php
-                                   }
+                                    }
                                    ?>
 
                                </select>
 
-                               <input type="date" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
+                               <input type="date" id="date-entretien-modify" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
 
-                               <input type="text" class="form-control sub" name="km" value="<?= $histo->km; ?>">
+                               <input type="text" id="km-entretien-modify" class="form-control sub" name="km" value="<?= $histo->km; ?>">
 
-                               <textarea name="description" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
+                               <textarea name="description" id="description-entretien-modify" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
 
-                               <input type="text" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
+                               <input type="text" id="prix-entretien-modify" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
                            </div>
 
-                           <button type="submit" class="btn btn-primary submit">Submit</button>
+                           <button type="submit" id="btn-submit-entretien-modify" class="btn btn-primary submit">Submit</button>
 
                          </div>
                      </form>
@@ -551,7 +544,7 @@
                            <?php } ?>
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit submit-km" disabled>Submit</button>
+                       <button type="submit" id="submit-km" class="btn btn-primary submit submit-km" disabled>Submit</button>
                      </form>
                      </div>
                    </div>
@@ -572,6 +565,7 @@
        <script src="<?php echo base_url('assets/script/animated-progressbar.js');?>"></script>
        <script src="<?php echo base_url('assets/script/frais-a-venir.js'); ?>"></script>
        <script src="<?php echo base_url('assets/script/check-form-km.js'); ?>"></script>
+       <script src="<?php echo base_url('assets/script/check-form-entretien.js'); ?>"></script>
 
        <!-- <script src="<?php // echo base_url('assets/script/ajax_km_error.js');?>"></script> -->
    </body>
