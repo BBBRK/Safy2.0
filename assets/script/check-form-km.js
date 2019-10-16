@@ -1,16 +1,18 @@
 
-var btnSubmit = document.querySelector('.submit-km');
-var inputKm = document.querySelector('.input-km');
+var btnSubmit = document.getElementById('submit-km');
+var inputKm = document.getElementById('km');
 var regex = /^[0-9]+$/;
 
 
 
-window.addEventListener('blur', checkForm);
+window.addEventListener('click', checkFormKm);
 
-function checkForm(){
+function checkFormKm(){
     if(inputKm.value.match(regex)){
         btnSubmit.disabled = false;
+        console.log('b');
     }else{
         btnSubmit.disabled = true;
+        console.log('w');
     }
 }

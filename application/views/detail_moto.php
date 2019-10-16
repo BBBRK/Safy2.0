@@ -419,7 +419,7 @@
 
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit">Submit</button>
+                       <button type="submit" id="btn-submit-entretien" class="btn btn-primary submit" disabled>Submit</button>
 
                  </div>
              </form>
@@ -465,31 +465,31 @@
                            <div class="form-group form-group1">
                                <select class="form-control sub" name="id_operation">
 
+                                <!-- MARCHE PAS -->
                                    <?php foreach ($operation as $row) { ?>
                                            <option value="<?php echo $row->id;?>"
                                                <?php if($row->id != ""){
                                                    echo " selected";
                                                }
                                                echo ">".$row->type."</option>\n"; ?>
-
                                        <?php
-                                   }
+                                    }
                                    ?>
 
                                </select>
 
-                               <input type="date" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
+                               <input type="date" id="date-entretien-modify" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
 
-                               <input type="text" class="form-control sub" name="km" value="<?= $histo->km; ?>">
+                               <input type="text" id="km-entretien-modify" class="form-control sub" name="km" value="<?= $histo->km; ?>">
 
-                               <textarea name="description" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
+                               <textarea name="description" id="description-entretien-modify" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
 
-                               <input type="text" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
+                               <input type="text" id="prix-entretien-modify" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
                            </div>
 
-                           <button type="submit" class="btn btn-primary submit">Submit</button>
+                           <button type="submit" id="btn-submit-entretien-modify" class="btn btn-primary submit">Submit</button>
 
                          </div>
                      </form>
@@ -544,7 +544,7 @@
                            <?php } ?>
                        </div>
 
-                       <button type="submit" class="btn btn-primary submit submit-km" disabled>Submit</button>
+                       <button type="submit" id="submit-km" class="btn btn-primary submit submit-km" disabled>Submit</button>
                      </form>
                      </div>
                    </div>
