@@ -115,7 +115,6 @@ class register extends CI_Controller {
         redirect(site_url("safy/index"));
     }
 
-
     public function reset_password($id){
 
         if ($data = $this->input->post()){
@@ -135,7 +134,6 @@ class register extends CI_Controller {
             $this->load->view('reset_password_view');
         }
     }
-
 
     public function reset_password_email(){
 
@@ -185,7 +183,7 @@ class register extends CI_Controller {
             }
             else{
                 $this->session->set_flashdata("email-fail", "Une erreur s'est produite");
-                $this->load->view('reset_password_email'); //+ passer un message d'erreur
+                $this->load->view('reset_password_email');
             }
         }
         else{
