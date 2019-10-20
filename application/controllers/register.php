@@ -21,16 +21,56 @@ class register extends CI_Controller {
 
         if($this->form_validation->run() == TRUE) {
 
-            $this->register_model->register();
-            $this->session->set_flashdata("inscription", "Vous êtes maintenant inscrit, vous pouvez vous connecter pour acceder à votre espace.");
-            redirect(site_url("register/login"));
-        }
-        else{
+              $data = $this->input->post();
+              // var_dump($data);
 
-            $this->load->view('sub_form');
-        }
+              //load library
+              $this->load->library('Phpmailer_lib');
 
-    }
+              //create new mail object
+              $mail = $this->phpmailer_lib->load();
+
+              // setup SMTP
+              $mail->isSMTP();
+              $mail->Host = 'smtp.gmail.com';
+              $mail->SMTPAuth = true;
+              $mail->Username = 'jimmy.bbbrk@gmail.com';
+              $mail->Password = 'eterlol525';
+              $mail->SMTPSecure = 'tls';
+              $mail->Port = 587;
+              $mail->iSHtml(true);
+
+              $mail->setFrom('jimmy.bbbrk@gmail.com', 'Safy');
+
+              // Add a recipient
+              $mail->addAddress($data['mail_Proprietaire']);
+
+              // Email subject
+              $mail->Subject = 'Inscription a Safy';
+
+              // Email body content
+              $mailContent = "<h1>Bonjour ".$data['prenom_Proprietaire']."</h1>
+                  <p>Bienvenu sur Safy, l'application qui facilite la vie des motards !";
+              $mail->Body = $mailContent;
+
+              // Send email
+              if(!$mail->send()){
+                  echo 'Message could not be sent.';
+                  echo 'Mailer Error: '.$mail->ErrorInfo;
+              }else{
+                $this->register_model->register();
+                $this->session->set_flashdata("inscription", "Vous êtes maintenant inscrit, un email vous a été ernvoyé, vous pouvez vous connecter pour acceder à votre espace.");
+                redirect(site_url("register/login"));
+              }
+          }
+          else{
+              $this->session->set_flashdata("email-fail", "Une erreur s'est produite");
+              $this->load->view('sub_form'); //+ passer un message d'erreur
+          }
+      }
+
+
+
 
 
     public function login(){
@@ -46,6 +86,7 @@ class register extends CI_Controller {
 
                 if($user){
                         if (password_verify($password, $user->pw_Proprietaire)) {
+
                             $this->session->user = $user;
                             redirect(site_url("safy/userindex"));
                         }
@@ -151,9 +192,6 @@ class register extends CI_Controller {
             $this->load->view('reset_password_email');
         }
     }
-
-
-
 
 }
 
