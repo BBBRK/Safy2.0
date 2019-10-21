@@ -4,7 +4,6 @@ include("assets/php/entete.php");
 ?>
 
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark nav" id="navbar">
             <a class="navbar-brand" href="<?php echo site_url('safy/index') ?>">Safy</a>
 
@@ -13,7 +12,6 @@ include("assets/php/entete.php");
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
                 <ul class="navbar-nav  ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
@@ -35,46 +33,34 @@ include("assets/php/entete.php");
          ?>
 
         <div class="sub-form">
-
             <div class="alerte-messages">
                 <?php echo validation_errors('<li>', '</li>'); ?>
             </div>
 
-
             <?php echo form_open_multipart(); ?>
-              <div class="form-group">
-                <label class="lab-input">Prénom :</label>
-                <input type="text" class="form-control sub" name="prenom_Proprietaire" value="<?php echo set_value('userPrenom') ?>">
+                <div class="form-group">
+                    <label class="lab-input">Prénom :</label>
+                    <input type="text" class="form-control sub" name="prenom_Proprietaire" value="<?php echo set_value('userPrenom') ?>">
 
+                    <label class="lab-input">Nom :</label>
+                    <input type="text" class="form-control sub" name="nom_Proprietaire" value="<?php echo set_value('userNom') ?>">
 
-                <label class="lab-input">Nom :</label>
-                <input type="text" class="form-control sub" name="nom_Proprietaire" value="<?php echo set_value('userNom') ?>">
+                    <label class="lab-input">Email :</label>
+                    <input type="email" class="form-control sub" name="mail_Proprietaire" value="<?php echo set_value('userEmail') ?>">
 
+                    <label class="lab-input">Date de naissance :</label>
+                    <input type="date" class="form-control sub" name="age_Proprietaire" value="<?php echo set_value('userBirth') ?>">
 
-                <label class="lab-input">Email :</label>
-                <input type="email" class="form-control sub" name="mail_Proprietaire" value="<?php echo set_value('userEmail') ?>">
+                    <label class="lab-input">Mot de passe :</label>
+                    <input type="password" class="form-control sub" name="pw_Proprietaire">
 
-
-                <label class="lab-input">Date de naissance :</label>
-                <input type="date" class="form-control sub" name="age_Proprietaire" value="<?php echo set_value('userBirth') ?>">
-
-
-                <label class="lab-input">Mot de passe :</label>
-                <input type="password" class="form-control sub" name="pw_Proprietaire">
-
-                <label class="lab-input">Confirmez le mot de passe :</label>
-                <input type="password" class="form-control sub" name="pw_confirm">
-              </div>
-
-
-              <button type="submit" class="btn btn-primary submit">Valider</button>
+                    <label class="lab-input">Confirmez le mot de passe :</label>
+                    <input type="password" class="form-control sub" name="pw_confirm">
+                </div>
+                <button type="submit" class="btn btn-primary submit">Valider</button>
             </form>
-
         </div>
         <br><br><br><br>
-
-
-
 
         <!-- Bootstrap scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

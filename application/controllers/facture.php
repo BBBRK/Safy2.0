@@ -3,23 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class facture extends CI_Controller {
 
-
         public function ajout(){
 
             $this->load->model('facture_model');
 
-            if ($this->input->post()) {
+            if($this->input->post()){
 
                 $id_moto = $_POST['id_moto'];
-
                 $finalName = $_POST['id_histo'];
 
-                //Reccupere l'extension du fichier
+                //Get the file extension
                 $name = $_FILES['facture']['name'];
                 $file_ext = pathinfo($name, PATHINFO_EXTENSION);
 
-
-                //supprime et remplace le ficher photo si le nom est le meme mais l'extension est differente
+                //Delete and replace if a file is already upload
                 switch($file_ext){
                     case $file_ext == "gif":
                         unlink('./assets/images/factures/'.$finalName.'.jpg');
@@ -37,7 +34,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         break;
                 }
 
-
                 $config['upload_path'] = './assets/images/factures';
                 $config['file_name'] = $finalName.'.'.$file_ext;
                 $config['allowed_types'] = 'gif|jpg|png';
@@ -52,18 +48,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 if (!$this->upload->do_upload('facture')) {
 
                         $errors = array('error' => $this->upload->display_errors());
-
                         $aView["errors"] = $errors;
-
                         echo $aView["errors"];
-
                     }
 
                 redirect('moto/detail_moto/'.$id_moto);
-
                 }
-
         }
-
-
 }

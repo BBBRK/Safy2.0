@@ -19,14 +19,17 @@
             unset($data['pw_confirm']); //permet que le champ ne soit pas entrer en DB
             $this->db->insert("proprietaire", $data);
             return $this->db->insert_id();
-
         }
+
+    /* -------------------------------------------------------------------- */
 
         public function login($email){
 
             $user = $this->db->query("SELECT * FROM proprietaire WHERE mail_Proprietaire=?", $email)->row();
             return $user;
         }
+
+    /* -------------------------------------------------------------------- */
 
         public function email_exist($email){
             $result = $this->db->query("SELECT mail_Proprietaire, prenom_Proprietaire, id_Proprietaire FROM proprietaire WHERE mail_Proprietaire= ?", $email);
@@ -40,11 +43,10 @@
             }
         }
 
+    /* -------------------------------------------------------------------- */
 
         public function reset_password($data){
-
-          $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
-
+            $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
             $this->db->query("UPDATE proprietaire
                               SET pw_Proprietaire = '".$data["newPassword"]."'
                               WHERE id_Proprietaire =?", $data["id"]);

@@ -4,16 +4,13 @@
 ?>
 
    <body class="body-userindex">
-
        <nav class="navbar navbar-expand-lg navbar-dark nav" id="navbar">
            <a class="navbar-brand" href="<?php echo site_url('safy/index'); ?>">Safy</a>
-
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
            </button>
 
            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
                <ul class="navbar-nav  mr-auto">
                    <li class="nav_item">
                        <a class="nav-link" id="navnav" href="<?php echo site_url('safy/userindex'); ?>">Mes motos</a>
@@ -32,7 +29,6 @@
                        <?php endif; ?>
                    </li>
 
-
                    <li class="nav_item">
                        <?php if($this->session->user): ?>
                        <a class="nav-link" id="navnav" href="<?php echo site_url('register/login'); ?>">Bonjour <?= $this->session->user->prenom_Proprietaire ;?></a>
@@ -48,10 +44,9 @@
        </nav>
 
        <section class="section-userindex container">
-           <?php foreach ($moto as $row){ ?>
-               <input hidden type="text" id="idMoto" name="idMoto" value="<?php echo $row->id_Moto; ?>">
+               <input hidden type="text" id="idMoto" name="idMoto" value="<?php echo $moto[0]->id_Moto; ?>">
 
-               <h1 class="vosmotos"><?php echo $row->nom_Marque. " " .$row->nom_Modele; ?></h1>
+               <h1 class="vosmotos"><?php echo $moto[0]->nom_Marque. " " .$moto[0]->nom_Modele; ?></h1>
                <hr class="horizontal-line hr-detail">
 
                <div class="container-fluid">
@@ -80,29 +75,21 @@
                        <div class="col col-lg-6 col-md-12 col-sm-12 col-xs-12">
                            <div class="upload-btn-wrapper container">
                                <?php echo form_open_multipart(); ?>
-
-                                   <?php foreach ($moto as $raw) {
-                                       $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+                                   <?php
+                                       $picture = file_exists("./assets/images/photo_user/".$moto[0]->id_Moto.".jpg");
                                        if($picture == true){ ?>
 
-                                       <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="photo-detail" id="detailImg" alt="mes motos">
+                                       <img src='<?php echo base_url("assets/images/photo_user/".$moto[0]->id_Moto);?>' class="photo-detail" id="detailImg" alt="mes motos">
 
                                    <?php }else{
-                                           $substrName = substr($raw->nom_Modele, 0, 3);
+                                           $substrName = substr($moto[0]->nom_Modele, 0, 3);
                                        ?>
                                            <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="photo-detail" id="detailImg" alt="mes motos">
-
-
                                        <?php } ?>
-
-
-
-
 
                                    <input type="file" classe="btn-photo" id="uploadPhoto" name="myfile"/>
                                    <!-- Permet de reccuperer l'id dans le formulaire -->
-                                   <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
-                                   <?php  } ?>
+                                   <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $moto[0]->id_Moto; ?>">
                                    <button type="submit" id="submit-photo" class="btn btn-primary submit" hidden>Submit</button>
                                </form>
                            </div>
@@ -147,7 +134,7 @@
                        </li>
 
                        <li class="nav_item">
-                           <a class="nav-link nav_detail" href="<?php echo site_url('moto/delete_moto/'.$row->id_Moto); ?>" onclick="return confirm('Etes-vous sûr ?')">Supprimer moto</a>
+                           <a class="nav-link nav_detail" href="<?php echo site_url('moto/delete_moto/'.$moto[0]->id_Moto); ?>" onclick="return confirm('Etes-vous sûr ?')">Supprimer moto</a>
                        </li>
                    </ul>
 
@@ -159,12 +146,8 @@
                </div>
            </nav>
 
-
            <div class="moto-sante" id="sante-moto">
-
-               <h3 class="kilometre">Kilomètrage : <?php echo $row->km_Moto; ?> km</h3>
-               <?php } ?> <!--  line 51 -->
-
+               <h3 class="kilometre">Kilomètrage : <?php echo $moto[0]->km_Moto; ?> km</h3>
 
                <div class="container-fluid">
                    <div class="row">
@@ -198,8 +181,8 @@
                                    <?php
                                    // VOIR POUR ENTRER CA DANS LE CONTROLLER
                                    $data = array($pneuAv, $pneuArr, $kitChaine, $vid, $plaqAv, $plaqArr, $purge);
-                                       $var = [];
-                                   for ($i=0; $i < count($data); $i++) {
+                                   $var = [];
+                                   for ($i = 0; $i < count($data); $i++) {
                                        if ($data[$i] >= 100) {
                                            array_push($var, 1);
                                        }
@@ -251,7 +234,6 @@
                                        <?php } ?>
                                    </div>
 
-
                                    <div class="row">
                                        <div class="col col-lg-9 col-progressbar">
                                            <div class="progress">
@@ -280,7 +262,6 @@
                                        <?php } ?>
                                    </div>
 
-
                                    <div class="row">
                                        <div class="col col-lg-9 col-progressbar">
                                            <div class="progress">
@@ -288,14 +269,12 @@
                                            </div>
                                        </div>
 
-
                                        <?php if ($plaqArr >= 80) { ?>
                                            <div class="col col-lg-3 progress-icone">
                                                <button type="button" class="btn btn-secondary myPop blink" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="L'usure théorique de vos plaquettes arrière est élevé, nous vous conseillons d'effectuer un contrôle visuel. Le prix moyen d'un changement de plaquette arrière est de 40€."><i class="fas fa-exclamation"></i></button>
                                            </div>
                                        <?php } ?>
                                    </div>
-
 
                                    <div class="row">
                                        <div class="col col-lg-9 col-progressbar">
@@ -319,12 +298,10 @@
            </div>
 
            <div class="historique" id="historique">
-
                <div class="table-responsive">
-
                    <table id="table" class="table">
                        <thead>
-                            <!-- Entetes du tableau administrateur -->
+                            <!-- Entetes du tableau historique -->
                            <tr class="header-historique">
                                <th class="head-historique"scope="col">Type</th>
                                <th class="head-historique larg-historique"scope="col">Description</th>
@@ -344,114 +321,94 @@
            </div>
        </section>
 
-
                    <!-- ********************** MODALS BOOTSTRAP ********************************* -->
-
                    <!-- FACTURE -->
-
        <?php foreach ($historique as $histo){ ?>
 
-       <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
-         <div class="modal-dialog modal-lg" role="document">
-           <div class="modal-content">
-             <div class="modal-body">
-
-                 <h4 class="mt-1 mb-2">Votre facture</h4>
-                 <hr class="horizontal-line hr-modal-km">
-                 <img src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
+           <div id="modal-facture-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
+             <div class="modal-dialog modal-lg" role="document">
+               <div class="modal-content">
+                 <div class="modal-body">
+                     <h4 class="mt-1 mb-2">Votre facture</h4>
+                     <hr class="horizontal-line hr-modal-km">
+                     <img src="<?php echo base_url("assets/images/factures/$histo->id") ?>" alt="">
+                 </div>
+               </div>
              </div>
            </div>
-         </div>
-       </div>
-
-<?php } ?>
+       <?php } ?>
 
                    <!-- AJOUT ENTRETIEN -->
+    <div id="modal-entretien" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="img-around-entretien">
+                         <?php foreach ($moto as $raw) {
+                             $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
+                             if($picture == true){ ?>
 
-   <div id="modal-entretien" class="modal fade" tabindex="-1" role="dialog">
-     <div class="modal-dialog modal-dialog-centered" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-             <div class="img-around-entretien">
+                                 <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+                         <?php }else{
+                                 $substrName = substr($raw->nom_Modele, 0, 3);
+                             ?>
+                                 <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+                             <?php } ?>
+                         <?php } ?>
+                    </div>
+                </div>
+                <div class="modal-body">
+                   <h4 class="mt-1 mb-2">Ajouter un entretien</h4>
+                   <hr class="horizontal-line hr-modal-km">
+                   <?php echo validation_errors(); ?>
+                     <?php echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
+                         <div class="modal-form">
+                               <div class="form-group form-group1">
+                                   <select class="form-control sub" name="id_operation">
+                                       <?php foreach ($operation as $row) {
+                                           echo '<option value='.$row->id.'>'.$row->type.'</option>';
+                                       } ?>
+                                   </select>
+                                   <!-- Champs caché pour reccuperer l'id dans la fonction "ajout_operation" dans le controller -->
+                                   <?php foreach ($moto as $raw) { ?>
+                                       <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
+                                   <?php } ?>
 
-                 <?php foreach ($moto as $raw) {
-                     $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
-                     if($picture == true){ ?>
+                                   <input type="date" class="form-control sub" id="date-entretien" name="date_operation" placeholder="30/11/1992">
 
-                     <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
+                                   <input type="text" class="form-control sub" id="km-entretien" name="km" placeholder="km">
 
-                 <?php }else{
-                         $substrName = substr($raw->nom_Modele, 0, 3);
-                     ?>
-                         <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
+                                   <textarea name="description" class="form-control sub-text" id="description-entretien" rows="5" cols="80" placeholder="Description"></textarea>
 
-
-                     <?php }} ?>
-             </div>
-         </div>
-         <div class="modal-body">
-
-           <h4 class="mt-1 mb-2">Ajouter un entretien</h4>
-           <hr class="horizontal-line hr-modal-km">
-           <?php echo validation_errors(); ?>
-             <?php echo form_open('moto/ajout_operation', 'id="form_operation"'); ?>
-                 <div class="modal-form">
-
-                       <div class="form-group form-group1">
-                           <select class="form-control sub" name="id_operation">
-                               <?php foreach ($operation as $row) {
-                                   echo '<option value='.$row->id.'>'.$row->type.'</option>';
-                               } ?>
-                           </select>
-
-                           <!-- Champs caché pour reccuperer l'id dans la fonction "ajout_operation" dans le controller -->
-                           <?php foreach ($moto as $raw) { ?>
-                               <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
-                           <?php } ?>
-
-                           <input type="date" class="form-control sub" id="date-entretien" name="date_operation" placeholder="30/11/1992">
-
-                           <input type="text" class="form-control sub" id="km-entretien" name="km" placeholder="km">
-
-                           <textarea name="description" class="form-control sub-text" id="description-entretien" rows="5" cols="80" placeholder="Description"></textarea>
-
-                           <input type="text" class="form-control sub" id="prix-entretien" name="prix" placeholder="prix total">
-
-                       </div>
-
-                       <button type="submit" id="btn-submit-entretien" class="btn btn-primary submit" disabled>Submit</button>
-
-                 </div>
-             </form>
-         </div>
-       </div>
-     </div>
+                                   <input type="text" class="form-control sub" id="prix-entretien" name="prix" placeholder="prix total">
+                               </div>
+                               <button type="submit" id="btn-submit-entretien" class="btn btn-primary submit" disabled>Submit</button>
+                         </div>
+                     </form>
+                </div>
+            </div>
+        </div>
    </div>
 
                        <!-- MODIF ENTRETIEN -->
                        <!-- This modal is completed thanks to the ajax function in the file "open-modal.js" -->
 
    <?php foreach ($historique as $histo){ ?>
-
        <div id="modal-update-entretien-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
          <div class="modal-dialog modal-dialog-centered" role="document">
            <div class="modal-content">
              <div class="modal-header">
                  <div class="img-around-entretien">
-
-                     <?php foreach ($moto as $raw) {
-                         $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
-                         if($picture == true){ ?>
-
-                         <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-entretien" id="" alt="mes motos">
-
+                     <?php
+                         $picture = file_exists("./assets/images/photo_user/".$moto[0]->id_Moto.".jpg");
+                         if($picture == true){
+                     ?>
+                             <img src='<?php echo base_url("assets/images/photo_user/".$moto[0]->id_Moto);?>' class="img-entretien" id="" alt="mes motos">
                      <?php }else{
-                             $substrName = substr($raw->nom_Modele, 0, 3);
+                             $substrName = substr($moto[0]->nom_Modele, 0, 3);
                          ?>
                              <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
-
-
-                         <?php }} ?>
+                         <?php } ?>
                  </div>
              </div>
              <div class="modal-body">
@@ -460,11 +417,9 @@
                <hr class="horizontal-line hr-modal-km">
                <?php echo validation_errors();
                      echo form_open('moto/modif_historique/'.$histo->id, 'id="form_operation"'); ?>
-                     <div class="modal-form">
-
+                        <div class="modal-form">
                            <div class="form-group form-group1">
                                <select class="form-control sub" name="id_operation">
-
                                 <!-- MARCHE PAS -->
                                    <?php foreach ($operation as $row) { ?>
                                            <option value="<?php echo $row->id;?>"
@@ -472,10 +427,7 @@
                                                    echo " selected";
                                                }
                                                echo ">".$row->type."</option>\n"; ?>
-                                       <?php
-                                    }
-                                   ?>
-
+                                       <?php } ?>
                                </select>
 
                                <input type="date" id="date-entretien-modify" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
@@ -487,71 +439,56 @@
                                <input type="text" id="prix-entretien-modify" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
 
                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
-                           </div>
-
-                           <button type="submit" id="btn-submit-entretien-modify" class="btn btn-primary submit">Submit</button>
-
-                         </div>
-                     </form>
+                            </div>
+                            <button type="submit" id="btn-submit-entretien-modify" class="btn btn-primary submit">Submit</button>
+                        </div>
+                    </form>
                  </div>
                </div>
              </div>
            </div>
-
        <?php } ?>
 
-
-                   <!-- MISE A JOUR KM -->
-
-               <div class="modal fade" id="modal-km" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                 <div class="modal-dialog cascading-modal modal-avatar modal-dialog-centered modal-sm" role="document">
+            <!-- MISE A JOUR KM -->
+            <div class="modal fade" id="modal-km" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog cascading-modal modal-avatar modal-dialog-centered modal-sm" role="document">
                    <!--Content-->
-                   <div class="modal-content">
-                     <!--Header-->
-                     <div class="modal-header">
-                         <div class="img-around-km">
-
-                             <?php foreach ($moto as $raw) {
-                                 $picture = file_exists("./assets/images/photo_user/$raw->id_Moto.jpg");
-                                 if($picture == true){ ?>
-
-                                 <img src='<?php echo base_url("assets/images/photo_user/$raw->id_Moto");?>' class="img-km" id="" alt="mes motos">
-
-                             <?php }else{
-                                     $substrName = substr($raw->nom_Modele, 0, 3);
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            <div class="img-around-km">
+                                <?php
+                                    $picture = file_exists("./assets/images/photo_user/".$moto[0]->id_Moto.".jpg");
+                                    if($picture == true){
+                                ?>
+                                    <img src='<?php echo base_url("assets/images/photo_user/".$moto[0]->id_Moto);?>' class="img-km" id="" alt="mes motos">
+                                <?php }else{
+                                        $substrName = substr($moto[0]->nom_Modele, 0, 3);
                                  ?>
                                      <img src='<?php echo base_url("assets/images/photo_constructeur/$substrName");?>' class="img-km" id="" alt="mes motos">
-                                 <?php }} ?>
-
+                                 <?php } ?>
                          </div>
                      </div>
-                     <!--Body-->
-                     <div class="modal-body text-center mb-1">
+                    <!--Body-->
+                    <div class="modal-body text-center mb-1">
+                        <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
+                        <hr class="horizontal-line hr-modal-km">
 
-                       <h4 class="mt-1 mb-2">Mise à jour kilométrique</h4>
-                       <hr class="horizontal-line hr-modal-km">
+                        <?php echo validation_errors(); ?>
+                        <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
+                            <div id="error_msg"></div>
 
-                   <?php echo validation_errors(); ?>
-                   <?php echo form_open('moto/maj_km', 'id="form_km"'); ?>
-                         <div id="error_msg"></div>
+                            <div class="form-group form-group1">
+                                <input type="text" class="form-control input-km" id="km" name="km_Moto" placeholder="4500">
+                                <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $moto[0]->id_Moto; ?>">
+                            </div>
+                            <button type="submit" id="submit-km" class="btn btn-primary submit submit-km" disabled>Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                       <div class="form-group form-group1">
-                           <input type="text" class="form-control input-km" id="km" name="km_Moto" placeholder="4500">
-
-                           <?php foreach ($moto as $raw) { ?>
-                           <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $raw->id_Moto; ?>">
-                           <?php } ?>
-                       </div>
-
-                       <button type="submit" id="submit-km" class="btn btn-primary submit submit-km" disabled>Submit</button>
-                     </form>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-
-   </script>
 
        <!-- Bootstrap scripts -->
        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -593,9 +530,10 @@
                                          result += "<td class='height-row'>" + historique.date_operation + "</td>";
                                          result += "<td class='height-row'>" + historique.prix + "€" + "</td>";
                                          result += "<td class='height-row'><button data-toggle='modal' data-target=#modal-update-entretien-" + historique.id + "><i class='far fa-edit icon'></i></button></td>";
-                                         result += "<td class='height-row'><a href='http://localhost/Safy2.0/index.php/moto/delete_historique/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
-                                         result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='http://localhost/Safy2.0/index.php/facture/ajout' method='post' class='form-facture'><input type='file' id='uploadFacture-" + historique.id + "' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture-" + historique.id + "' type='submit' class='butn btn btn-lg submit-facture' value='Valider'></form></div></td></tr>"
+                                         result += "<td class='height-row'><a href='<?= site_url("moto/delete_historique") ?>" + "/" + historique.id + "'><i class='fas fa-trash-alt icon'></i></a></td>";
+                                         result += "<td class='height-row'><div class='.upload-btn-wrapper'><form enctype='multipart/form-data' action='<?= site_url("facture/ajout") ?>' method='post' class='form-facture'><input type='file' id='uploadFacture-" + historique.id + "' class='upload-facture' name='facture'><i id='upload-facture-icon' class='fas fa-cloud-upload-alt'></i><input type='hidden' name='id_histo' value='" + historique.id + "'><input type='hidden' name='id_moto' value='" + id + "'><input hidden id='submit-facture-" + historique.id + "' type='submit' class='butn btn btn-lg submit-facture' value='Valider'></form></div></td></tr>"
                  // <button data-toggle='modal' data-target='#modal-facture-'><i class='fas fa-cloud-upload-alt'></i></td><tr>";
+
                                      }
                                      $("#tr").html(result);
                    // Onclick sur la description pour display le modal

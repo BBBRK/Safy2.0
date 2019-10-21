@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     class moto extends CI_Controller {
 
-
-
         //-------------------------------------------------------------
         /**
         * \brief function permettant l'ajout d'une nouvelle moto pour l'utilisateur connecté
@@ -15,26 +13,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function ajout(){
 
             if ($data = $this->input->post()) {
-
-                // la date modif est dans ce cas la date de creation de la moto
+                // In this case, the modification date is the creation date
                 $data['date_modif'] = date('Y-m-d');
                 $this->load->model('moto_model');
-
                 $this->moto_model->ajout($data);
-
                 $aData['moto'] = $this->moto_model->get_moto_user();
 
                 $this->load->view('userindex', $aData);
             }
             else{
-
                 $this->load->model('moto_model');
-
                 $aView['marque'] = $this->moto_model->get_marque();
 
                 $this->load->view('ajout', $aView);
             }
-
         }
 
         /* -------------------------------------------------------------------- */
@@ -56,9 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->model('moto_model');
 
                 if ($this->input->post()) {
-
-
-                //  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
                     //Reccupere l'extension du fichier
                     $name = $_FILES["myfile"]['name'];
@@ -91,44 +80,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $config['max_width']  = '1024';
                     $config['max_height']  = '768';
 
-
                     $this->load->library('upload', $config);
 
-                        if (!$this->upload->do_upload('myfile')) {
+                    if(!$this->upload->do_upload('myfile')) {
 
-                                $errors = array('error' => $this->upload->display_errors());
-
-                                $aView["errors"] = $errors;
-
-                                echo $aView["errors"];
-
-                            }
-
-                        redirect('moto/detail_moto/'.$id_Moto);
-
+                        $errors = array('error' => $this->upload->display_errors());
+                        $aView["errors"] = $errors;
+                        echo $aView["errors"];
+                    }
+                    redirect('moto/detail_moto/'.$id_Moto);
                 }
 
-                // va chercher les noms, dates modif, id, nom marque et km moto
+                //get names, modification dates, id, mark's name and km moto
                 $aData['moto'] = $this->moto_model->get_moto_detail($id_Moto);
-
                 $aData['operation'] = $this->moto_model->get_type_operation();
 
-                //va chercher l'historique de la moto de la page detail
+                //Get the historique of the current motor on detail_moto
                 $aData['historique'] = $this->moto_model->get_historique($id_Moto);
 
                 $lifetime = $this->moto_model->lifetime($id_Moto);
                 // GET THE CURRENT KM TO USE IT AS PARAM ON FOLLOWING FUNCTIONS
                 $current_km = $aData['moto'][0]->km_Moto;
-
                 $date_circu = $aData['moto'][0]->date_circu_Moto;
-
-
-
 
                 $this->load->library('Fonctions');
 
-
-
+                //Convert datas into Integer
                 $vidange = $this->fonctions->convert($lifetime["vidange"], $current_km);
                 $pneuAvantKm = $this->fonctions->convert($lifetime["pneu_avant"], $current_km);
                 $pneuArriereKm = $this->fonctions->convert($lifetime["pneu_arriere"], $current_km);
@@ -136,49 +113,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $plaquetteAvantKm = $this->fonctions->convert($lifetime["plaquette_avant"], $current_km);
                 $plaquetteArriereKm = $this->fonctions->convert($lifetime["plaquette_arriere"], $current_km);
 
-
-
-
+                //calling functions for lifebars
                 $aData['vid'] = $this->fonctions->calc_vidange($vidange, $current_km);
-
                 $aData['purge'] = $this->fonctions->calc_purge($lifetime["purge_frein"], $date_circu);
-
                 $aData['plaqAv'] = $this->fonctions->calc_plaquette($plaquetteAvantKm, $current_km);
-
                 $aData['plaqArr'] = $this->fonctions->calc_plaquette($plaquetteArriereKm, $current_km);
-
                 $aData['kitChaine'] = $this->fonctions->calc_kitChaine($kitChaineKm, $current_km);
-
                 $aData['pneuAv'] = $this->fonctions->calc_pneuAv($pneuAvantKm, $current_km);
-
                 $aData['pneuArr'] = $this->fonctions->calc_pneuArr($pneuArriereKm, $current_km);
 
-
-
-
+                //var_dump($aData); exit;
                 $this->load->view('detail_moto', $aData);
-
         }
 
+        /* -------------------------------------------------------------------- */
 
         public function ajout_operation(){
 
             $this->load->model('moto_model');
-
             $historique = $this->input->post();
-
-
-            //TEMPORAIRE LE TEMPS DE L'AJOUT DE LA FONCTION
             unset($historique['myfile']);
             $this->moto_model->ajout_operation($historique);
 
             redirect('moto/detail_moto/'.$historique['id_moto']);
-
         }
-
-
-
-// }
 
     /* -------------------------------------------------------------------- */
 
@@ -190,13 +148,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             // if($this->form_validation->run() == TRUE){
 
             $this->load->model('moto_model');
-
             $km = $this->input->post();
-
             $id_Moto = $km['id_moto'];
 
             unset($km['id_moto']);
-
             $this->moto_model->maj_km($km, $id_Moto);
 
              redirect('moto/detail_moto/'.$id_Moto);
@@ -218,7 +173,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function historique($id_Moto){
 
             $this->load->model('moto_model');
-
             $historique = $this->moto_model->get_historique($id_Moto);
 
             $this->output->set_content_type('application/json');
@@ -229,7 +183,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     /* -------------------------------------------------------------------- */
 
-
         public function delete_historique($id_historique){
 
             $this->load->model('moto_model');
@@ -238,34 +191,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         }
 
-
     /* -------------------------------------------------------------------- */
 
         public function modif_historique($id_operation){
 
-
             if ($data = $this->input->post()) {
+                $this->load->model('moto_model');
+                $this->moto_model->modif_historique($id_operation, $data);
 
-            $this->load->model('moto_model');
-            $this->moto_model->modif_historique($id_operation, $data);
-
-            redirect('moto/detail_moto/'.$data['id_Moto']);
+                redirect('moto/detail_moto/'.$data['id_Moto']);
             }
         }
-
 
     /* -------------------------------------------------------------------- */
 
         public function delete_moto($id_Moto){
 
             $this->load->model('moto_model');
-
             $this->moto_model->delete_moto($id_Moto);
             redirect('safy/userindex/');
         }
-
-
-
-    }
+}
 
 ?>

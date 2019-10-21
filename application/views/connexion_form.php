@@ -4,7 +4,6 @@ include("assets/php/entete.php");
 ?>
 
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark nav" id="navbar">
             <a class="navbar-brand" href="<?php echo site_url('safy/index') ?>">Safy</a>
 
@@ -13,7 +12,6 @@ include("assets/php/entete.php");
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
                 <ul class="navbar-nav  ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
@@ -27,17 +25,15 @@ include("assets/php/entete.php");
 
         <?php echo form_open_multipart(); ?>
             <div class="connexion-form">
-
-                <?php
-                    //erreur connexion
+                 <?php
+                    //connexion error
                     if($this->session->flashdata('message')){
                         echo
                             '<div class="alerte-messages-connexion">'
                                 .$this->session->flashdata("message").
                             '</div>';
                     }
-
-                    //ok inscription
+                    //ok
                     if($this->session->flashdata('inscription')){
                         echo
                             '<div class="ok-messages">'
@@ -59,13 +55,8 @@ include("assets/php/entete.php");
                   <small><a href="<?php echo site_url('register/reset_password_email'); ?>">Mot de passe oublié ?</a></small>
 
                   <button type="submit" class="btn btn-primary submit">Submit</button>
-                </form>
-
             </div>
         </form>
-
-
-
 
         <!-- Bootstrap scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -73,9 +64,5 @@ include("assets/php/entete.php");
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
         <!-- js scripts -->
-
     </body>
-    <footer>
-
-    </footer>
 </html>
