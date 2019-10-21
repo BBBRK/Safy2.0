@@ -13,13 +13,11 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
                 <ul class="navbar-nav  mr-auto">
                     <li class="nav_item">
                         <a class="nav-link" id="navnav" href="<?php echo site_url('safy/userindex'); ?>">Mes motos</a>
                     </li>
                 </ul>
-
                 <ul class="navbar-nav  ml-auto">
                     <li class="nav_item">
                         <?php if($this->session->user): ?>
@@ -31,7 +29,6 @@
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/subscribe'); ?>">Inscription</a>
                         <?php endif; ?>
                     </li>
-
 
                     <li class="nav_item">
                         <?php if($this->session->user): ?>
@@ -48,8 +45,8 @@
         </nav>
 
         <section class="section-userindex container">
-                <h1 class="vosmotos">Mes motos</h1>
-                <hr class="horizontal-line">
+            <h1 class="vosmotos">Mes motos</h1>
+            <hr class="horizontal-line">
 
             <div class="col-cards container">
                 <div class="row">
@@ -57,7 +54,6 @@
                         // fonction permettant d'afficher 3 carte/ligne
                         $colNumber = 3;
                         $cardCount = 0;
-
                         foreach ($moto as $row){
                     ?>
                     <div class="col col-lg-4 col-md-6 col-12">
@@ -92,9 +88,7 @@
                             } //ligne 62
                              ?>
                          </div> <!-- ligne 78 -->
-
                 </div> <!-- col-cards ligne 55 -->
-
         </section>
 
         <a class="" href='<?php echo site_url("moto/ajout/"); ?>'><span class="far fa-plus-square fa-3x"></span></a>

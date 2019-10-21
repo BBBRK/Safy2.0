@@ -4,7 +4,6 @@ include("assets/php/entete.php");
 ?>
 
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark nav" id="navbar">
             <a class="navbar-brand" href="<?php echo site_url('safy/index') ?>">Safy</a>
 
@@ -13,30 +12,25 @@ include("assets/php/entete.php");
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
                 <ul class="navbar-nav  mr-auto">
                     <li class="nav_item">
                         <a class="nav-link" id="navnav" href="<?php echo site_url('safy/userindex') ?>">Mes motos</a>
                     </li>
                 </ul>
-
                 <ul class="navbar-nav  ml-auto">
                     <li class="nav-item">
                         <?php if($this->session->user): ?>
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/logout') ?>">Deconnexion</a>
                     </li>
-
                     <li class="nav-item">
                         <?php else: ?>
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
                         <?php endif; ?>
                     </li>
-
                     <li class="nav-item">
                         <?php if($this->session->user): ?>
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/login') ?>">Bonjour <?= $this->session->user->prenom_Proprietaire ;?></a>
                     </li>
-
                     <li class="nav-item">
                     <?php else: ?>
                         <a class="nav-link" id="navnav" href="<?php echo site_url('register/login') ?>">Connexion</a>
@@ -46,10 +40,8 @@ include("assets/php/entete.php");
             </div>
         </nav>
 
-
         <?php echo form_open_multipart(); ?>
             <div class="connexion-form">
-
                   <div class="form-group">
                       <label class="lab-input">Marque :</label>
                       <select class="form-control sub" name="marqueId" id="marque">
@@ -77,7 +69,6 @@ include("assets/php/entete.php");
             </div>
         </form>
 
-
         <!-- Bootstrap scripts + jquery + ajax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -87,7 +78,4 @@ include("assets/php/entete.php");
         <script src="<?php echo base_url('assets/script/double_select_marque.js');?>"></script>
 
     </body>
-    <footer>
-
-    </footer>
 </html>

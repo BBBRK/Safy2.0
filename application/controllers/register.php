@@ -15,14 +15,11 @@ class register extends CI_Controller {
         $this->form_validation->set_rules('pw_Proprietaire', 'mot de passe', 'required', array('required' => 'Votre %s est indispensable pour l\'inscription.'));
         $this->form_validation->set_rules('pw_confirm', 'mot de passe', 'trim|required|matches[pw_Proprietaire]', array('required' => 'Votre %s doit être le meme dans les deux champs'));
 
-
         // if form_validation is ok, we load the method subscribe,
         // if not, we display the subscribe form with the errors.
-
         if($this->form_validation->run() == TRUE) {
 
               $data = $this->input->post();
-              // var_dump($data);
 
               //load library
               $this->load->library('Phpmailer_lib');
@@ -69,14 +66,11 @@ class register extends CI_Controller {
           }
       }
 
-
-
-
+ /* -------------------------------------------------------------------- */
 
     public function login(){
 
         $this->load->model('register_model');
-
 
         if ($data = $this->input->post())
         {
@@ -84,36 +78,37 @@ class register extends CI_Controller {
             $password = $data['password'];
             $user = $this->register_model->login($email);
 
-                if($user){
-                        if (password_verify($password, $user->pw_Proprietaire)) {
-
-                            $this->session->user = $user;
-                            redirect(site_url("safy/userindex"));
-                        }
-                        else{
-                            $this->session->user = null;
-                            $this->session->set_flashdata("message", "Le mot de passe ne correspond pas avec l'email");
-                            redirect(site_url("register/login"));
-                        }
-
+            if($user){
+                if (password_verify($password, $user->pw_Proprietaire)) {
+                    $this->session->user = $user;
+                    redirect(site_url("safy/userindex"));
                 }
                 else{
                     $this->session->user = null;
                     $this->session->set_flashdata("message", "Le mot de passe ne correspond pas avec l'email");
                     redirect(site_url("register/login"));
-                }
+                    }
+            }
+            else{
+                $this->session->user = null;
+                $this->session->set_flashdata("message", "Le mot de passe ne correspond pas avec l'email");
+                redirect(site_url("register/login"));
+            }
         }
         else{
             $this->load->view('connexion_form');
         }
-
     }
+
+    /* -------------------------------------------------------------------- */
 
     public function logout(){
 
         $this->session->user = null;
         redirect(site_url("safy/index"));
     }
+
+    /* -------------------------------------------------------------------- */
 
     public function reset_password($id){
 
@@ -134,6 +129,8 @@ class register extends CI_Controller {
             $this->load->view('reset_password_view');
         }
     }
+
+/* -------------------------------------------------------------------- */
 
     public function reset_password_email(){
 
@@ -190,7 +187,6 @@ class register extends CI_Controller {
             $this->load->view('reset_password_email');
         }
     }
-
 }
 
 ?>

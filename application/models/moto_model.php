@@ -2,14 +2,10 @@
 
     class moto_model extends CI_Model {
 
-
-
-
         public function ajout($data){
 
             $data['id_Proprietaire'] = $this->session->user->id_Proprietaire;
             unset($data['marqueId']);
-
             $this->db->insert("moto", $data);
         }
 
@@ -45,11 +41,9 @@
                                          JOIN moto
                                          ON modele.id_Modele = moto.id_Modele
                                          WHERE id_Proprietaire= ?", array($userId));
-
             $result = $requete->result();
 
             return $result;
-
         }
 
  /* -------------------------------------------------------------------- */
@@ -67,11 +61,9 @@
                                   JOIN marque
                                   ON modele.id_Marque = marque.id_Marque
                                   WHERE id_Moto= ?", array($id_Moto));
-
      $result = $requete->result();
 
      return $result;
-
     }
 
     /* -------------------------------------------------------------------- */
@@ -88,10 +80,7 @@
 
     public function ajout_operation($historique){
 
-
-
         $this->db->insert("historique", $historique);
-
     }
 
     /* -------------------------------------------------------------------- */
@@ -100,8 +89,6 @@
 
         $this->db->set('km_Moto', $km);
         $this->db->update('moto', $km, "id_Moto=$id_Moto");
-
-        // mise à jour de la date de derniere modification
 
         $date['date_modif'] = date('Y-m-d');
 
@@ -129,10 +116,7 @@
                                      JOIN operation
                                      ON historique.id_operation = operation.id
                                      WHERE id_Moto=?", array($id_Moto));
-
-
         return $requete->result();
-
     }
 
 
@@ -148,8 +132,6 @@
 
         unset($data['id_Moto']);
 
-
-
         $requete = $this->db->query("UPDATE Historique
                                      SET description = '$description',
                                          date_operation = '$date_operation',
@@ -164,7 +146,6 @@
 
         $this->db->where('id', $id_historique);
         $this->db->delete('historique');
-
     }
 
     /* -------------------------------------------------------------------- */
@@ -190,7 +171,6 @@
     public function lifetime($id_Moto){
 
         $requete = [];
-
         $vidange = $this->db->query("SELECT MAX(km) as maxkm
                                      FROM historique
                                      WHERE id_operation=2
@@ -198,7 +178,6 @@
                                      array($id_Moto));
 
         $requete['vidange'] = $vidange->row();
-
 
         /* ------- */
 
@@ -260,22 +239,7 @@
 
         $requete['plaquette_arriere'] = $plaquette_arriere->row();
 
-
-
-
         return $requete;
-
-
-
-
     }
-
-
 }
-
-
-
-
-
-
  ?>

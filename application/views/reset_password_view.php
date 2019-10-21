@@ -13,20 +13,16 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-                <ul class="navbar-nav  ml-auto">
-                    <li class="nav_item">
-                        <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
-                    </li>
-                    <li class="nav_item">
-                        <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/login') ?>">Connexion</a>
-                    </li>
-                </ul>
-
+            <ul class="navbar-nav  ml-auto">
+                <li class="nav_item">
+                    <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/subscribe') ?>">Inscription</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav-link nav_item" id="navnav" href="<?php echo site_url('register/login') ?>">Connexion</a>
+                </li>
             </ul>
         </div>
     </nav>
-
 
     <h2>Réinitialisez votre mot de passe.</h2>
 
@@ -41,10 +37,6 @@
             <button type="submit" class="btn btn-primary submit">Réinitialiser</button>
         </div>
     </form>
-
-
-
-
 
     <!-- Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
