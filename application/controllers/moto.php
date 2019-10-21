@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-
+                //var_dump($aData); exit;
                 $this->load->view('detail_moto', $aData);
 
         }
