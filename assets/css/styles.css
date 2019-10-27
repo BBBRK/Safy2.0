@@ -13,16 +13,6 @@ body{
     /* normal */
      background-color: #323232;
 
-    /* clair-fonce-clair */
-    /* background: rgb(50,50,50);
-    background: linear-gradient(90deg, rgba(50,50,50,0.9) 0%, rgba(50,50,50,1) 50%, rgba(50,50,50,0.9) 100%); */
-
-
-    /* Fonce-clair-fonce */
-    /* background: rgb(50,50,50);
-    background: linear-gradient(90deg, rgba(50,50,50,1) 0%, rgba(50,50,50,0.9) 50%, rgba(50,50,50,1) 100%); */
-
-
     padding: 2% 15% 0 15%;
     text-align: center;
 }
@@ -617,9 +607,9 @@ small{
     color: white;
 }
 
-.submit{
+/* .submit{
     text-align: center;
-}
+} */
 
 .modal-content{
     background: #393e46;
