@@ -1,19 +1,18 @@
 
-var btnSubmit = document.getElementById('submit-km');
+var btnSubmitKm = document.getElementById('submit-km');
 var inputKm = document.getElementById('km');
 var regex = /^[0-9]+$/;
+var modal = document.querySelector('.modal-km');
 
-alert('');
-
-
-window.addEventListener('click', checkFormKm);
+modal.addEventListener('click', checkFormKm);
 
 function checkFormKm(){
+
     if(inputKm.value.match(regex)){
-        btnSubmit.disabled = false;
+        btnSubmitKm.disabled = false;
         console.log('okkk');
     }else{
-        btnSubmit.disabled = true;
+        btnSubmitKm.disabled = true;
         console.log('wrong');
     }
 }

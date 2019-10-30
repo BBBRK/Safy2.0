@@ -17,13 +17,13 @@ features à build:
 
     - Refonte du design dans l'onglet historique
     - animation des progressbar
-    - Faire les check forms des ajout entretien et modif
     - Faire un check de l'upload photo et gerer mieux les autorisations
 
 
   bugs à traiter:
   ---------------
     - Sur le modif, bug sur le selected
+    - Changer de catégorie l'entretien ne fonctionne plus
     - Centrer les cards dans userindex
 
 

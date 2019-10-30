@@ -341,7 +341,7 @@
                    <!-- AJOUT ENTRETIEN -->
     <div id="modal-entretien" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content modal-new-entretien">
                 <div class="modal-header">
                     <div class="img-around-entretien">
                          <?php foreach ($moto as $raw) {
@@ -396,7 +396,7 @@
    <?php foreach ($historique as $histo){ ?>
        <div id="modal-update-entretien-<?= $histo->id; ?>" class="modal fade" tabindex="-1" role="dialog">
          <div class="modal-dialog modal-dialog-centered" role="document">
-           <div class="modal-content">
+           <div class="modal-content modal-modify">
              <div class="modal-header">
                  <div class="img-around-entretien">
                      <?php
@@ -430,17 +430,17 @@
                                        <?php } ?>
                                </select>
 
-                               <input type="date" id="date-entretien-modify" class="form-control sub" name="date_operation" value="<?= $histo->date_operation; ?>">
+                               <input type="date" class="form-control sub date-entretien-modify" name="date_operation" value="<?= $histo->date_operation; ?>">
 
-                               <input type="text" id="km-entretien-modify" class="form-control sub" name="km" value="<?= $histo->km; ?>">
+                               <input type="text" class="form-control sub km-entretien-modify" name="km" value="<?= $histo->km; ?>">
 
-                               <textarea name="description" id="description-entretien-modify" class="form-control sub-text" rows="5" cols="80"><?= $histo->description; ?></textarea>
+                               <textarea name="description" class="form-control sub-text description-entretien-modify" rows="5" cols="80"><?= $histo->description; ?></textarea>
 
-                               <input type="text" id="prix-entretien-modify" class="form-control sub" name="prix" value="<?= $histo->prix; ?>">
+                               <input type="text" class="form-control sub prix-entretien-modify" name="prix" value="<?= $histo->prix; ?>">
 
                                <input type="hidden" name="id_Moto" value="<?php echo $moto[0]->id_Moto ?>">
                             </div>
-                            <button type="submit" id="btn-submit-entretien-modify" class="btn btn-primary submit">Submit</button>
+                            <button type="submit" class="btn btn-primary submit btn-submit-entretien-modify">Submit</button>
                         </div>
                     </form>
                  </div>
@@ -453,7 +453,7 @@
             <div class="modal fade" id="modal-km" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog cascading-modal modal-avatar modal-dialog-centered modal-sm" role="document">
                    <!--Content-->
-                    <div class="modal-content">
+                    <div class="modal-content modal-km">
                         <!--Header-->
                         <div class="modal-header">
                             <div class="img-around-km">
@@ -482,7 +482,7 @@
                                 <input type="text" class="form-control input-km" id="km" name="km_Moto" placeholder="4500">
                                 <input type="hidden" class="form-control sub" name="id_moto" value="<?php echo $moto[0]->id_Moto; ?>">
                             </div>
-                            <button type="submit" id="submit-km" class="btn btn-primary submit submit-km" disabled>Submit</button>
+                            <button type="submit" id="submit-km" class="btn btn-primary submit" disabled>Submit</button>
                         </form>
                     </div>
                 </div>
