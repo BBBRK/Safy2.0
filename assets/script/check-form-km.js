@@ -10,9 +10,7 @@ function checkFormKm(){
 
     if(inputKm.value.match(regex)){
         btnSubmitKm.disabled = false;
-        console.log('okkk');
     }else{
         btnSubmitKm.disabled = true;
-        console.log('wrong');
     }
 }
