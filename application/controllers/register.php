@@ -120,6 +120,9 @@ class register extends CI_Controller {
 
                 $this->load->model('register_model');
                 $this->register_model->reset_password($data);
+
+                $this->session->set_flashdata("pw_changed", "Votre nouveau mot de passe a bien été enregistré");
+                $this->load->view('connexion_form');
             }
             else{
                 $this->load->view('reset_password_view'); // mettre une alerte mdp pas les meme

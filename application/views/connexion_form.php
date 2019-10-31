@@ -40,6 +40,14 @@ include("assets/php/entete.php");
                                 .$this->session->flashdata("inscription").
                             '</div>';
                     }
+
+                    //pw changed
+                    if($this->session->flashdata('pw_changed')){
+                        echo
+                            '<div class="ok-messages">'
+                                .$this->session->flashdata("pw_changed").
+                            '</div>';
+                    }
                  ?>
 
                   <div class="form-group">
